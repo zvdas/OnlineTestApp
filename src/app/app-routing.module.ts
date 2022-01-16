@@ -7,12 +7,12 @@ import { RegisterComponent } from './register/register.component';
 import { ResultComponent } from './result/result.component';
 
 const routes: Routes = [
+  {path:'**',component:ErrorComponent},
   {path:'register',component:RegisterComponent},
   {path:'quiz',component:QuizComponent},
   {path:'result',component:ResultComponent},
   {path:'review',component:RegisterComponent},
-  {path:'',redirectTo:'/register',pathMatch:'full'},
-  {path:'**',component:ErrorComponent}
+  {path:'',redirectTo:'/register',pathMatch:'full'}
 ];
 
 @NgModule({
