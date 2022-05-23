@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "onlineTestApp": {
+    "ota_v1": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
@@ -69,10 +69,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "onlineTestApp:build:production"
+              "browserTarget": "ota_v1:build:production"
             },
             "development": {
-              "browserTarget": "onlineTestApp:build:development"
+              "browserTarget": "ota_v1:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -80,7 +80,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "onlineTestApp:build"
+            "browserTarget": "ota_v1:build"
           }
         },
         "test": {
@@ -104,5 +104,5 @@
       }
     }
   },
-  "defaultProject": "onlineTestApp"
+  "defaultProject": "ota_v1"
 }
