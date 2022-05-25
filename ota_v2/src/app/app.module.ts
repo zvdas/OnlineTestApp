@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { QuizModule } from './quiz/quiz.module';
-import { ReviewModule } from './review/review.module';
-import { ResultModule } from './result/result.module';
+import { QuizModule } from './modules/quiz/quiz.module';
+import { ResultModule } from './modules/result/result.module';
+import { ReviewModule } from './modules/review/review.module';
+import { UserModule } from './modules/user/user.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { ResultModule } from './result/result.module';
     AppRoutingModule,
     QuizModule,
     ReviewModule,
-    ResultModule
+    ResultModule,
+    UserModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

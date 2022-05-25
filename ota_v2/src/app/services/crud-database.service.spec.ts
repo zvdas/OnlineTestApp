@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { QuizService } from './quiz.service';
+import { CrudDatabaseService } from './crud-database.service';
 
-describe('QuizService', () => {
-  let service: QuizService;
+describe('CrudDatabaseService', () => {
+  let service: CrudDatabaseService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(QuizService);
+    service = TestBed.inject(CrudDatabaseService);
   });
 
   it('should be created', () => {
