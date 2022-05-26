@@ -8,6 +8,10 @@ import { QuizModule } from './modules/quiz/quiz.module';
 import { ResultModule } from './modules/result/result.module';
 import { ReviewModule } from './modules/review/review.module';
 import { UserModule } from './modules/user/user.module';
+import { UserService } from './services/user/user.service';
+import { QuizService } from './services/quiz/quiz.service';
+import { AnswersService } from './services/answers/answers.service';
+import { AdminModule } from './modules/admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -20,9 +24,15 @@ import { UserModule } from './modules/user/user.module';
     ReviewModule,
     ResultModule,
     UserModule,
-    HttpClientModule
+    HttpClientModule,
+    AdminModule
   ],
-  providers: [],
+  providers: [
+    UserService,
+    QuizService,
+    AnswersService
+  ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
