@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { MatListModule } from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,7 +13,8 @@ import { UserModule } from './modules/user/user.module';
 import { UserService } from './services/user/user.service';
 import { QuizService } from './services/quiz/quiz.service';
 import { AnswersService } from './services/answers/answers.service';
-import { AdminModule } from './modules/admin/admin.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,11 @@ import { AdminModule } from './modules/admin/admin.module';
     ResultModule,
     UserModule,
     HttpClientModule,
-    AdminModule
+    FormsModule,
+    ReactiveFormsModule,
+    MatListModule,
+    MatIconModule,
+    BrowserAnimationsModule
   ],
   providers: [
     UserService,

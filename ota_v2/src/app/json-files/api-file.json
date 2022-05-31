@@ -1,5 +1,62 @@
 {
-  "user": [],
+  "user": [
+    {
+      "fullname": "jessie eisenberg",
+      "email": "jessberg@aol.com",
+      "username": "jessberg",
+      "password": "jessberg123",
+      "isAdmin": false,
+      "id": 1
+    },
+    {
+      "fullname": "Alicia Winters",
+      "email": "awinters@aol.com",
+      "username": "awinters",
+      "password": "awinters123",
+      "isAdmin": false,
+      "id": 2
+    },
+    {
+      "fullname": "Morticia Summers",
+      "email": "msummers@aol.com",
+      "username": "msummers",
+      "password": "msummers123",
+      "isAdmin": false,
+      "id": 3
+    },
+    {
+      "fullname": "Mark Thomas",
+      "email": "mthomas@aol.com",
+      "username": "mthomas",
+      "password": "mthomas123",
+      "isAdmin": false,
+      "id": 4
+    },
+    {
+      "fullname": "Thomas",
+      "email": "Adkins",
+      "username": "tadkins",
+      "password": "tadkins123",
+      "isAdmin": true,
+      "id": 5
+    },
+    {
+      "fullname": "Tracy Jenkins",
+      "email": "tjenkins@aol.com",
+      "username": "tjenkins",
+      "password": "tjenkins123",
+      "isAdmin": false,
+      "id": 6
+    },
+    {
+      "fullname": "Charlene Mathis",
+      "email": "cmathis@aol.in",
+      "username": "cmathis",
+      "password": "Mathis123",
+      "isAdmin": true,
+      "id": 7
+    }
+  ],
   "quiz": [],
   "answers": []
 }
