@@ -55,6 +55,30 @@
       "password": "Mathis123",
       "isAdmin": true,
       "id": 7
+    },
+    {
+      "fullname": "Timothy Greene",
+      "email": "tgeene@aol.com",
+      "username": "tgreene",
+      "password": "tgreene123",
+      "isAdmin": true,
+      "id": 8
+    },
+    {
+      "fullname": "test",
+      "email": "test",
+      "username": "test",
+      "password": "test",
+      "isAdmin": true,
+      "id": 9
+    },
+    {
+      "fullname": "test",
+      "email": "test",
+      "username": "test",
+      "password": "test",
+      "isAdmin": false,
+      "id": 10
     }
   ],
   "quiz": [],

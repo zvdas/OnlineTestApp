@@ -27,15 +27,23 @@ export class UserService {
     return this.hc.get<User[]>(this.userServer);
   }
 
-  getUserById(){
-
+  getUserById(id:number){
+    return this.hc.get<User>(`${this.userServer}/${id}`);
   }
 
-  updateUserDetails(){
-
+  updateUserDetails(id: number, updateUser:User){
+    this.hc.put<User>(`${this.userServer}/${id}`, updateUser).subscribe(
+      (response) => console.log(response),
+      (error) => console.log(error),
+      () => console.log("completed")
+    )
   }
 
-  deleteUserDetails(){
-
+  deleteUserDetails(id:number){
+    this.hc.delete(`${this.userServer}/${id}`).subscribe(
+      (response) => console.log(response),
+      (error) => console.log(error),
+      () => console.log("completed")
+    )
   }  
 }

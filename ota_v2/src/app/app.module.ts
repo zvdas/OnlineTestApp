@@ -39,7 +39,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     QuizService,
     AnswersService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [
+    AppComponent
+  ]
 })
 
 export class AppModule { }

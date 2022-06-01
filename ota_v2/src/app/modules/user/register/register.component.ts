@@ -15,7 +15,6 @@ export class RegisterComponent implements OnInit {
   msg='';
 
   constructor(private fb: FormBuilder, private us: UserService, private router: Router) {
-    
     this.registerForm = this.fb.group({
       fullname   : ["",Validators.required],
       email  : ["",Validators.required],
@@ -23,7 +22,6 @@ export class RegisterComponent implements OnInit {
       password  : ["",Validators.required],
       isAdmin : [false]
     })
-
   }
 
   ngOnInit(): void {}
