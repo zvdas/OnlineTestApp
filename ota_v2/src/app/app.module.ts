@@ -15,10 +15,12 @@ import { QuizService } from './services/quiz/quiz.service';
 import { AnswersService } from './services/answers/answers.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { StringToNumberPipe } from './pipes/string-to-number.pipe';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    StringToNumberPipe
   ],
   imports: [
     BrowserModule,

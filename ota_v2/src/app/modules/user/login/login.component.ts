@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
 
   user:User[]=[];
   loginForm!: FormGroup;
+  currentUser!: User;
   msg='';
 
   constructor(private fb: FormBuilder, private us: UserService, private router: Router) {
@@ -35,11 +36,15 @@ export class LoginComponent implements OnInit {
 
   onClickLogin(){
     if(this.user[this.user.map(x=>x.username).indexOf(this.loginForm.value.uname)].password===this.loginForm.value.pword){
-      this.msg = 'Login Successful. Redirecting to quiz now.'
+      this.msg = 'Login Successful. Redirecting to quiz now.';
+      this.currentUser = this.user[this.user.map(x=>x.username).indexOf(this.loginForm.value.uname)];
       localStorage.clear();
-      localStorage.setItem('user',JSON.stringify(this.user));
-      this.router.navigate(['/displayQuiz'])
-      this.msg = 'User does not exist. Please register and login again.'
+      localStorage.setItem('currentUser',JSON.stringify(this.currentUser));
+      if(this.currentUser.isAdmin){
+        this.router.navigate(['/userMaster'])
+      }else{
+        this.router.navigate(['/quizDisplay'])
+      }
     }else{
       this.msg = 'Incorrect username or password. Please try again.'
     }

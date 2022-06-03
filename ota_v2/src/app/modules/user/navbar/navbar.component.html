@@ -1,1 +1,13 @@
-<p>navbar works!</p>
+<nav class="light-red">
+    <div class="nav-wrapper">
+        <a href="#" class="brand-logo center">Quiz</a>
+        <span style="position: absolute; left: 10px;">Hi, {{pDetailsparsed.fullname|titlecase}}</span>
+        <span style="position: absolute; left: 200px;">{{curDate|date:"longDate"}}</span>
+        <span style="position: absolute; right: 200px;">{{curDate|date:"fullTime"}}</span>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li>
+                <a (click)="Logout()">Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>

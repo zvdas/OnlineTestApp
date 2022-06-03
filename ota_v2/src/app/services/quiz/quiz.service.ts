@@ -17,7 +17,7 @@ export class QuizService {
   /* for quiz - quiz, review, result & admin */
   sendQuizDetails(newQuiz:Quiz){
     this.hc.post(this.quizServer, newQuiz).subscribe(
-      (response) => console.log(response),
+      (response) => console.log(`send quiz: ${response}`),
       (error) => console.log(error),
       () => console.log("completed")
     )
@@ -27,12 +27,24 @@ export class QuizService {
     return this.hc.get<Quiz[]>(this.quizServer);
   }
 
-  updateQuizDetails(){
-
+  getQuizByID(id: number){
+    return this.hc.get<Quiz>(`${this.quizServer}/${id}`);
   }
 
-  deleteQuizDetails(){
+  updateQuizDetails(id: number, updateQuiz: Quiz){
+    this.hc.put<Quiz>(`${this.quizServer}/${id}`, updateQuiz).subscribe(
+      (response) => console.log(`update quiz: ${response}`),
+      (error) => console.log(error),
+      () => console.log("completed")
+    )
+  }
 
+  deleteQuizDetails(id: number){
+    this.hc.delete(`${this.quizServer}/${id}`).subscribe(
+      (response) => console.log(response),
+      (error) => console.log(error),
+      () => console.log("completed")
+    )
   }
 
 }

@@ -1,15 +1,18 @@
+import { Options } from "./options";
+
 export class Quiz {
-    qno:number;
     question:string;
-    options:string[];
+    options:Options[];
     answer:string;
     ansindex:number;
+    id: number;
 
-    constructor(qno:number, question:string, options:string[], answer:string, ansindex:number){
-        this.qno = qno;
+    constructor(question:string, options:Options[], answer:string, ansindex:number, id:number){
         this.question = question;
         this.options = options;
         this.answer = answer;
         this.ansindex = ansindex;
+        this.id = id;
     }
+
 }

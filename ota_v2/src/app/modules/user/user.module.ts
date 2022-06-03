@@ -4,7 +4,7 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { UserMasterComponent } from './user-master/user-master.component';
 import { ErrorComponent } from './error/error.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
@@ -17,6 +17,7 @@ import { NavbarComponent } from './navbar/navbar.component';
   ],
   imports: [
     CommonModule,
+    FormsModule,
     ReactiveFormsModule
   ],
   exports: [
