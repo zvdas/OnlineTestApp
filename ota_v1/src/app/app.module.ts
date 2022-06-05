@@ -8,6 +8,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { CountdownModule } from 'ngx-countdown';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
@@ -19,6 +21,7 @@ import { ErrorComponent } from './error/error.component';
 import { DatabasesService } from './services/databases.service';
 
 import { StringToNumberPipe } from './pipes/string-to-number.pipe';
+import { environment } from 'src/environments/environment.prod';
 
 @NgModule({
   declarations: [
@@ -40,7 +43,9 @@ import { StringToNumberPipe } from './pipes/string-to-number.pipe';
     MatButtonModule,
     MatIconModule,
     MatListModule,
-    CountdownModule
+    CountdownModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule
   ],
   providers: [DatabasesService],
   bootstrap: [AppComponent]

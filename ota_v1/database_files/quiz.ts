@@ -1,17 +1,14 @@
 export class quiz
 {
-    static answer(answer: any) {
-      throw new Error('Method not implemented.');
-    }
-    id:number;
+    qno:number;
     question:string;
-    options:string[]=[];
+    options:string[];
     answer:string;
     ansindex:number;
  
-    constructor(id: number,question: string,options:string[],answer: string,ansindex:number)
+    constructor(qno: number, question: string,options:string[],answer: string,ansindex:number)
     {
-        this.id=id;
+        this.qno=qno;
         this.question=question;
         this.options=options;
         this.answer=answer;
