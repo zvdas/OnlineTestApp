@@ -22,7 +22,6 @@ import { DatabasesService } from './services/databases.service';
 
 import { StringToNumberPipe } from './pipes/string-to-number.pipe';
 import { environment } from 'src/environments/environment.prod';
-import { AuthComponent } from './auth/auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -32,8 +31,7 @@ import { AuthComponent } from './auth/auth/auth.component';
     QuizComponent,
     ResultComponent,
     StringToNumberPipe,
-    ErrorComponent,
-    AuthComponent
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
