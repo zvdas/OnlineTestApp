@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { answer } from 'database_files/answer';
-import { quiz } from 'database_files/quiz';
+import { answer } from 'src/app/database_files/answer';
+import { quiz } from 'src/app/database_files/quiz';
 import { CountdownComponent } from 'ngx-countdown';
 import { DatabasesService } from '../services/databases.service';
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { answer } from 'database_files/answer';
-import { quiz } from 'database_files/quiz';
+import { answer } from 'src/app/database_files/answer';
+import { quiz } from 'src/app/database_files/quiz';
 import { DatabasesService } from '../services/databases.service';
 
 @Component({

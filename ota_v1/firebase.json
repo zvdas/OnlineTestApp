@@ -1,20 +1,15 @@
 {
-  "database": {
-    "rules": "database.rules.json"
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
   },
   "hosting": {
     "public": "dist/online-test-app",
     "ignore": [
       "firebase.json",
       "**/.*",
-      "**/node_modules/**"
+      "**/node_modules/**",
+      "/src/environments/**"
     ]
-  },
-  "firestore": {
-    "rules": "firestore.rules",
-    "indexes": "firestore.indexes.json"
-  },
-  "functions": {
-    "source": "functions"
   }
 }

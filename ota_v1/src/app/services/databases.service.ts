@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { answer } from 'database_files/answer';
-import { participant } from 'database_files/participant';
-import { quiz } from 'database_files/quiz';
+import { answer } from 'src/app/database_files/answer';
+import { participant } from 'src/app/database_files/participant';
+import { quiz } from 'src/app/database_files/quiz';
 import { Observable } from 'rxjs';
 
 @Injectable({
