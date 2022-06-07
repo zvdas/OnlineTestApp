@@ -1,0 +1,72 @@
+<strong>Step 1 : Create an angular application</strong>
+<p>To create a new angular project in a specific folder, open terminal inside that folder and type</p>
+ng new OnlineTestApp
+Would you like to add Angular routing? (y/N) y
+Which stylesheet format would you like to use? (Use arrow keys)
+> CSS
+<p>to execute an angular project</p>
+ng serve
+<p>An angular app page will be created on localhost:4200. Paste the link in the browser to view.</p>
+<strong>Step 2 : Create the quiz file to host on JSON server (fake API)</strong>
+<p>Create a json server with 10 questions. (A json linter can be used or a csv file to json online converter).  Install a json server to host the databases for participants, the quiz questions and answers and participant answers. Create a pipe for indexing the quiz to display individual results per page. In the quiz ts file, while posting the participant answers to the database, a formula will be used to check whether the answers are correct or incorrect for each question.</p>
+<strong>Step 3 : Install required dependencies for the project</strong>
+<p>Generate the project dependencies (components, services, pipes) using angular CLI.</p>
+<code>
+ng g component register
+ng g c navbar
+ng g c quiz
+ng g c result
+ng g c error
+ng g service services/databases
+ng g pipes pipes/StringToNumber
+</code>
+<p>Install the JSON server using npm and host the files on different ports.</p>
+<p>Note: all files can be hosted on the same port as sub links eg: http://localhost:3000/participant, http://localhost:3000/quiz, http://localhost:3000/answer. However for easy visibility and less congestion during demonstration, separate ports have been used for each file.</p>
+<code data-gist-id="9ad202f8ec1e13b1fa9ba7a05695bb7f" data-gist-file="quiz.json"></code>
+<code>
+npm install --save json-server
+json-server --watch --port 3000 database-files /participant.json
+json-server --watch --port 4000 database-files/quiz.json
+json-server --watch --port 5000 database-files /answer.json
+Install angular material for custom icons from material.angular.io.
+ng add @angular/material
+<code>
+<p>install bootstrap for Responsive Web Design (RWD)</p>
+<code>npm install --save bootstrap</code>
+<p>install countdown timer (not mandatory to project requirements)</p>
+<code>npm install ngx-countdown --save</code>
+<strong>Step 4: Routing</strong>
+<p>Add routes to the app routing module so that links clicked can redirect to required pages as well as blank and wildcard for empty pages. Export the app routing module to app module so that the routes function properly. Also add router outlet tag to the app html component so that all the children components can be added to the same page.</p>
+<code data-gist-id="9ad202f8ec1e13b1fa9ba7a05695bb7f" data-gist-file="app-routing.module.ts"></code>
+<code data-gist-id="9ad202f8ec1e13b1fa9ba7a05695bb7f" data-gist-file="app.module.ts"></code>
+<code data-gist-id="9ad202f8ec1e13b1fa9ba7a05695bb7f" data-gist-file="app.component.html"></code>
+<strong>Step 6 : MVC (Model-View-Controller) pattern - Model</strong>
+<p>Create a ts (TypeScript) file for each of the json files to be used as databases, so that the classes to be exported can be mapped to the object (i.e.) define name, email, username and password for the participant.</p>
+<code data-gist-id="9ad202f8ec1e13b1fa9ba7a05695bb7f" data-gist-file="participant.ts"></code>
+<code data-gist-id="9ad202f8ec1e13b1fa9ba7a05695bb7f" data-gist-file="answer.ts"></code>
+<code data-gist-id="9ad202f8ec1e13b1fa9ba7a05695bb7f" data-gist-file="quiz.ts"></code>
+<strong>Step 7 : Create Service for posting to and reading from database (fake JSON server APIs)</strong>
+<p>Define functions to send and retrieve fields to and from the databases using Http Client.</p>
+<code data-gist-id="9ad202f8ec1e13b1fa9ba7a05695bb7f" data-gist-file="database.service.ts"></code>
+<strong>Step 8 : MVC pattern - Controllers (.ts files) and Views (.html files)</strong>
+<p>Register Component<p>
+<p>Create the register component using reactive and angular forms to enable one way communication from model to view so that data fed into the registration form can be sent to the database and create a function to route the webpage to quiz once the “Start quiz” button is clicked.</p>
+<code data-gist-id="9ad202f8ec1e13b1fa9ba7a05695bb7f" data-gist-file="register.component.ts"></code>
+<code data-gist-id="9ad202f8ec1e13b1fa9ba7a05695bb7f" data-gist-file="register.component.html"></code>
+<p>Navbar Component</p>
+<p>Create a navbar component which will display the name of the person taking the quiz (fed from registration page), the date and time.<p>
+<code data-gist-id="9ad202f8ec1e13b1fa9ba7a05695bb7f" data-gist-file="navbar.component.ts"></code>
+<code data-gist-id="9ad202f8ec1e13b1fa9ba7a05695bb7f" data-gist-file="navbar.component.html"></code>
+<p>String to number pipe (for indexing)<p>
+<code data-gist-id="9ad202f8ec1e13b1fa9ba7a05695bb7f" data-gist-file="string-to-number.pipe.ts"></code>
+<strong>Quiz Component</strong>
+<p>Create functions in the quiz component to get the quiz data from the database and display in the webpage, one question at a time using for loop with indexing. Create an index staring with 0 with end 9 (10 questions) and use increments with (click) to increment the questions one at a time. While sending the answers clicked by the participant, a formula will check whether the participant answer matches the answer in the quiz database to determine whether it is correct or incorrect. The result will be sent to the database along with the answer selected.</p>
+<code data-gist-id="9ad202f8ec1e13b1fa9ba7a05695bb7f" data-gist-file="quiz.component.ts"></code>
+<code data-gist-id="9ad202f8ec1e13b1fa9ba7a05695bb7f" data-gist-file="quiz.component.html"></code>
+<p>Result Component</p>
+<p>The result will be displayed on the screen with a review section below so that each question can be reviewed one at a time, scrolled using the same concept of for loop with indexing mentioned earlier. There will also be an option to retake the quiz.</p>
+<code data-gist-id="9ad202f8ec1e13b1fa9ba7a05695bb7f" data-gist-file="result.component.ts"></code>
+<code data-gist-id="9ad202f8ec1e13b1fa9ba7a05695bb7f" data-gist-file="result.component.html"></code>
+<strong>Error Component</strong>
+<p>In case of an error while typing the url, the page will route to an information page displaying the error and suggesting workarounds.</p>
+<code data-gist-id="9ad202f8ec1e13b1fa9ba7a05695bb7f" data-gist-file="error.component.html"></code>
