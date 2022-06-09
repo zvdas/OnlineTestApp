@@ -16,7 +16,9 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.pDetails = localStorage.getItem('participant');
+    // this.pDetails = localStorage.getItem('participant');
+    this.pDetails = this.db.getParticipants();
+    console.log(`navbar participant : ${this.pDetails}`);
     this.pDetailsparsed = JSON.parse(this.pDetails);
 
   }

@@ -14,7 +14,7 @@ import { DatabasesService } from '../services/databases.service';
 
 export class QuizComponent implements OnInit {
 
-  quiz!: quiz[];
+  quiz: quiz[] = [];
   pDetails: any;
   pDetailsparsed: any;
   currentIndex: number = 0;
@@ -22,25 +22,30 @@ export class QuizComponent implements OnInit {
   // endIndex:number = quiz.length;
   ansArray:answer[]=[];
   
-  constructor(private db:DatabasesService,private router:Router) { }
+  constructor(private db:DatabasesService, private router:Router) { }
 
   ngOnInit(): void {
-
-    this.db.getQuestions().subscribe(
-      (response)=>  {this.quiz = response.map(x=>x.payload.doc.data());},
-      (error)=>     console.log(error),
-      ()=>          console.log("completed")
-    )
-
-    this.countdown.begin();
-
+    this.getQuizQuestions();
+    // this.countdown.begin();
   }
 
   
   @ViewChild('cd', { static: false }) private countdown!: CountdownComponent;
+
+  getQuizQuestions(){
+    /*
+    // for fakeAPI JSON server
+    this.db.getQuestions().subscribe(
+      (response) => {this.quiz = response},
+      (error) => console.log(error),
+      ()=> console.log("completed")
+    );
+    */
+
+    this.quiz = this.db.getQuestions();
+  }
   
-  onSubmit(quizForm:NgForm)
-  {
+  onSubmit(quizForm:NgForm){
     if(quizForm.value.selectedOption[0] === this.quiz[this.currentIndex].options[this.quiz[this.currentIndex].ansindex]){
       /*
       for fakeAPI JSON server
@@ -72,9 +77,8 @@ export class QuizComponent implements OnInit {
     };
   }
 
-  finishQuiz()
-  {
-    localStorage.setItem("answers", JSON.stringify(this.ansArray));
+  finishQuiz(){
+    this.db.sendParticipantAnswers(this.ansArray);
     this.router.navigate(['/result']);
   }
 

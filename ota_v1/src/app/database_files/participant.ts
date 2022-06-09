@@ -1,15 +1,17 @@
 export class participant
 {
-    name:string;
-    email:string;
-    username:any;
-    password:any;
+    id:number;
+    fullname:string;
+    emailid:string;
+    uname:any;
+    pword:any;
     
-    constructor(name:string,email:string,username:any,password:any)
+    constructor(id:number,fullname:string,emailid:string,uname:any,pword:any)
     {
-        this.name=name;
-        this.email=email;
-        this.username=username;
-        this.password=password;
+        this.id=id;
+        this.fullname=fullname;
+        this.emailid=emailid;
+        this.uname=uname;
+        this.pword=pword;
     }
 }

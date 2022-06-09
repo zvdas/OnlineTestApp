@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { answer } from 'src/app/database_files/answer';
 import { participant } from 'src/app/database_files/participant';
 import { quiz } from 'src/app/database_files/quiz';
-import { Observable } from 'rxjs';
+import quizjson from 'src/app/database_files/quiz.json';
+import participantjson from 'src/app/database_files/participant.json';
 
 @Injectable({
   providedIn: 'root'
@@ -13,53 +13,45 @@ import { Observable } from 'rxjs';
 export class DatabasesService {
 
   /*
-  Fake API JSON server
-
+  // Fake API JSON server
   participantServer='http://localhost:3000/Participant';
-  
   quizServer='http://localhost:4000/Quiz';
-
   answerServer='http://localhost:5000/Answer';
   */
 
-  // quizServer = 'https://onlinetestapp-8c5b6-default-rtdb.firebaseio.com/quiz.json';
+  quizArray: quiz[] = quizjson.Quiz;
+  participant: participant[] = participantjson.Participant;
 
-  constructor(private hc:HttpClient, private store: AngularFirestore) { }
+  constructor(private hc:HttpClient) { }
 
-  sendParticipantDetails(newParticipant:participant)
-  {
+  sendParticipantDetails(newParticipant:participant){
     /*
     this.hc.post(this.participantServer,newParticipant).subscribe(
       (response)=>  console.log(response),
       (error)=>     console.log(error),
       ()=>          console.log("completed")
       )
-      */
+    */
 
-    this.store.collection('participant').add(newParticipant)
-      .then(response => console.log(response))
-      .catch(error => console.log(error))
-      .finally(() => console.log("completed"))
+    localStorage.setItem("participant",JSON.stringify(newParticipant));
+    participantjson.Participant.concat(newParticipant);
   }
 
-  getParticipants(): Observable<any[]>
-  {
+  getParticipants(){
     /*
     return this.hc.get<participant[]>(this.participantServer);
     */
-    return this.store.collection('participant').snapshotChanges();
+    return localStorage.getItem("participant");
   }
 
-  getQuestions(): Observable<any[]>
-  {
+  getQuestions(){
     /*
-    return this.hc.get<quiz[]>(this.quizServer);
+    return this.hc.get<Quiz[]>(this.quizServer);
     */
-    return this.store.collection('quiz').snapshotChanges();
+    return this.quizArray;
   }   
 
-  sendParticipantAnswers(newParticipantAnswer:answer)
-  {
+  sendParticipantAnswers(newParticipantAnswer:answer[]){
     /*
     return this.hc.post(this.answerServer,newParticipantAnswer).subscribe(
       (response)=>  console.log(response),
@@ -67,18 +59,14 @@ export class DatabasesService {
       ()=>          console.log("completed")
     )
     */
-    this.store.collection('answers').add(newParticipantAnswer)
-      .then(response => console.log(response))
-      .catch(error => console.log(error))
-      .finally(() => console.log("completed"))
+    localStorage.setItem("answers", JSON.stringify(newParticipantAnswer));
   }
 
-  getParticipantAnswers(): Observable<any[]>
-  {
+  getParticipantAnswers(){
     /*
     return this.hc.get<answer[]>(this.answerServer);
     */
-    return this.store.collection('answers').snapshotChanges();
+    return localStorage.getItem("answers");
   }
 
 }

@@ -29,9 +29,8 @@ export class RegisterComponent implements OnInit {
 
   onClickSubmit()
   {
-    this.db.sendParticipantDetails(this.form.value);
     localStorage.clear();
-    localStorage.setItem('participant',JSON.stringify(this.form.value));
+    this.db.sendParticipantDetails(this.form.value);
     this.router.navigate(['/quiz']);
   }
 

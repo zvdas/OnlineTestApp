@@ -9,6 +9,7 @@ import { DatabasesService } from '../services/databases.service';
   templateUrl: './result.component.html',
   styleUrls: ['./result.component.css']
 })
+
 export class ResultComponent implements OnInit {
 
   quiz: quiz[]=[];
@@ -21,47 +22,44 @@ export class ResultComponent implements OnInit {
   constructor(private db:DatabasesService, private router:Router) { }
 
   ngOnInit(): void {
-    
-    this.db.getQuestions().subscribe(
-      (response)=>  {this.quiz = response.map(x=>x.payload.doc.data());},
-      (error)=>     console.log(error),
-      ()=>          console.log("completed")
-    )
-    
+    this.getQuizQuestions();
+    this.getParticipantAnswers();    
+  }
+
+  getQuizQuestions(){
+    this.quiz = this.db.getQuestions();
+  }
+
+  getParticipantAnswers(){
     /*
-    for fakeAPI JSON server
+    // for fakeAPI JSON server
     this.db.getParticipantAnswers().subscribe(
       (response)=>  {this.answers = response.map(x=>x.payload.doc.data());},
       (error)=>     console.log(error),
       ()=>          console.log("completed")
     )
     */
-    this.aDetails = localStorage.getItem('answers');
+    this.aDetails = this.db.getParticipantAnswers();
     this.aDetailsparsed = JSON.parse(this.aDetails);
-    console.log(`result component answerarray : ${this.aDetails} & parsed : ${this.aDetailsparsed}`);
-
   }
 
-  sum()
-  {
+  sum(){
     /*
     return this.answers.reduce((sum,item) => sum + item.answerScore,0);
     */
     return this.aDetailsparsed.reduce((sum: any, item: { answerScore: any; }) => sum + item.answerScore, 0);
   }
 
-  testStatus()
-  {
+  testStatus(){
     // if(this.answers.reduce((sum,item) => sum + item.answerScore,0) >= (this.answers.length*0.70)){
-      if(this.aDetailsparsed.reduce((sum: any,item: { answerScore: any; }) => sum + item.answerScore,0) >= (this.aDetailsparsed.length*0.70)){
+    if(this.aDetailsparsed.reduce((sum: any,item: { answerScore: any; }) => sum + item.answerScore,0) >= (this.aDetailsparsed.length*0.70)){
       return "\nYou have passed the Quiz.\nCongratulations!"
     }else{
       return "\nYou have failed the Quiz.\nPlease try again!"
     };
   }
 
-  retakeQuiz()
-  {
+  retakeQuiz(){
     this.router.navigate(['/quiz']);
   }
 
