@@ -1,0 +1,30 @@
+<div class="row">
+    <div class="col s4 offset-s4">
+        <div class="card white border border-blue-grey border-5">
+            <div class="card-content center blue-grey-text">
+<div class="center middle white blue-grey-text" style="font-size: xx-large;">
+                    <h4>You're Score is : {{sum()}} / {{answers.length}}</h4><br>
+                    <h4>{{testStatus()}}</h4>
+                    <button mat-raised-button class="bottom" type="submit" (click)="retakeQuiz()">Take Quiz Again</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col s4 offset-s4">
+        <div class="card white border border-blue-grey border-5">
+            <div class="card-content blue-grey-text">
+                <div class="row" *ngFor="let item1 of quiz.slice(currentIndex,currentIndex+1);let i=index" name="item1">
+                    <h4>{{item1.id}}. {{item1.question}}</h4>
+                    <p>Correct Answer: {{item1.options[item1.ansindex]}}</p>
+                </div>
+                <div class="row" *ngFor="let item2 of answers.slice(currentIndex,currentIndex+1); let i = index" name="item2">    
+                    <p>Your Answer: {{ item2.selectedOption }}</p><br>
+                    <p>Your answer is {{ item2.answerStatus }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<button type="button" (click)="currentIndex=currentIndex-1" *ngIf="currentIndex>0" style="position:fixed;;left:5%;top:50%;" mat-fab color="primary"><mat-icon>arrow_back_ios_new</mat-icon></button>
+<button type="button" (click)="currentIndex=currentIndex+1" *ngIf="currentIndex<endIndex" style="position:fixed;right:5%;top:50%;" mat-fab color="primary"><mat-icon>arrow_forward_ios</mat-icon></button>
