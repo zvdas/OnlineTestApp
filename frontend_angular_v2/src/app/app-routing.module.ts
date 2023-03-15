@@ -4,9 +4,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { QuizDisplayComponent } from './modules/quiz/quiz-display/quiz-display.component';
 import { QuizMasterComponent } from './modules/quiz/quiz-master/quiz-master.component';
 import { UserMasterComponent } from './modules/user/user-master/user-master.component';
-import { ErrorComponent } from './modules/user/error/error.component';
-import { LoginComponent } from './modules/user/login/login.component';
-import { RegisterComponent } from './modules/user/register/register.component';
+import { ErrorComponent } from './modules/layout/error/error.component';
+import { RegisterComponent } from './modules/authentication/register/register.component';
+import { LoginComponent } from './modules/authentication/login/login.component';
 
 const routes: Routes = [
   {path:'register', component:RegisterComponent},

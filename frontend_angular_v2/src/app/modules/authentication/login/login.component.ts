@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { User } from 'src/app/classes/user/user';
+import { User } from 'src/app/classes/user';
 import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
@@ -11,10 +11,9 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 
 export class LoginComponent implements OnInit {
-
-  user:User[]=[];
+  user: User[] = [];
   loginForm!: FormGroup;
-  currentUser!: User;
+  currentUser: User = {} as User;
   msg='';
 
   constructor(private fb: FormBuilder, private us: UserService, private router: Router) {
@@ -28,7 +27,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.us.getUserDetails().subscribe(
-      (response) => {this.user = response},
+      (response) => {this.user = response.map(res=>res.payload.doc.data() as User)},
       (error) => console.log(error),
       () => console.log("completed")
     )
@@ -49,7 +48,6 @@ export class LoginComponent implements OnInit {
       this.msg = 'Incorrect username or password. Please try again.'
     }
   }
-
 
   goToRegister(){
     this.router.navigate(['/register'])

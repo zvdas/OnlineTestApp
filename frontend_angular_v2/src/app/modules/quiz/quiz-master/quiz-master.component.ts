@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Options } from 'src/app/classes/quiz/options';
-import { Quiz } from 'src/app/classes/quiz/quiz';
+import { Quiz } from 'src/app/classes/quiz';
 import { QuizService } from 'src/app/services/quiz/quiz.service';
 
 @Component({
@@ -11,10 +10,8 @@ import { QuizService } from 'src/app/services/quiz/quiz.service';
 })
 
 export class QuizMasterComponent implements OnInit {
-
-  o!:Options;
-  q!:Quiz;
-  quiz!: Quiz[];
+  quiz: Quiz = {} as Quiz;
+  quizList: Quiz[] = [];
   msg='';
 
   constructor(private qs: QuizService, private router: Router) { }
@@ -25,35 +22,39 @@ export class QuizMasterComponent implements OnInit {
 
   showAll(){
     this.qs.getQuizDetails().subscribe(
-      (response) => {this.quiz = response},
-      (error) => console.log(error),
+      // response => console.log(response),
+      response => {this.quizList = response.map(res=>res.payload.doc.data() as Quiz)},
+      error => console.log(error),
       () => console.log('completed')
     )
-    console.log(`show quiz: ${JSON.stringify(this.quiz)}`)
+    console.log(`show quiz: ${JSON.stringify(this.quizList)}`)
   }
 
-  getQuizById(id: number){
+  getQuizById(id: string){
     this.qs.getQuizByID(id).subscribe(
-      (response) => {this.q = response},
-      (error) => console.log(error),
+      // response => console.log(response),
+      response => {this.quiz = response.payload.data() as Quiz},
+      error => console.log(error),
       () => console.log('completed')
     )
-    console.log(`get quiz: ${JSON.stringify(this.q)} id: ${id}`)
+    // console.log(`get quiz: ${JSON.stringify(this.quiz)} id: ${id}`)
   }
   
   addQuiz(){
-    console.log(`add  quiz: ${JSON.stringify(this.q)}`)
-    this.qs.sendQuizDetails(this.q);
+    console.log(`add  quiz: ${JSON.stringify(this.quiz)}`)
+    // this.qs.addQuizDetails(this.quiz);
     this.msg = "Quiz added successfully.";
   }
   
   updateQuiz(){
-    console.log(`update quiz: ${this.q}`)
-    this.qs.updateQuizDetails(this.q.id, this.q)
+    /*
+    console.log(`update quiz: ${this.quiz}`)
+    this.qs.updateQuizDetails(this.quiz.id, this.quiz);
     this.msg = "Quiz updated successfully.";
+    */
   }
   
-  deleteQuiz(id: number){
+  deleteQuiz(id: string){
     this.qs.deleteQuizDetails(id);
     this.msg = "Quiz deleted successfully.";
   }

@@ -10,13 +10,12 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 
 export class RegisterComponent implements OnInit {
-
   registerForm!: FormGroup;
   msg='';
 
   constructor(private fb: FormBuilder, private us: UserService, private router: Router) {
     this.registerForm = this.fb.group({
-      fullname   : ["",Validators.required],
+      full_name   : ["",Validators.required],
       email  : ["",Validators.required],
       username   : ["",Validators.required],
       password  : ["",Validators.required],

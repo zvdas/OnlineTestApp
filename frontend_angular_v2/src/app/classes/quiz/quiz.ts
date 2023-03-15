@@ -4,14 +4,14 @@ export class Quiz {
     question:string;
     options:Options[];
     answer:string;
-    ansindex:number;
+    ansIndex:number;
     id: number;
 
-    constructor(question:string, options:Options[], answer:string, ansindex:number, id:number){
+    constructor(question:string, options:Options[], answer:string, ansIndex:number, id:number){
         this.question = question;
         this.options = options;
         this.answer = answer;
-        this.ansindex = ansindex;
+        this.ansIndex = ansIndex;
         this.id = id;
     }
 

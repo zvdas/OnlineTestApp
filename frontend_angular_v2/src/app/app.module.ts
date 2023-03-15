@@ -17,10 +17,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StringToNumberPipe } from './pipes/string-to-number.pipe';
 
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { environment } from 'src/environments/environment';
+import { DummyComponent } from './authentication/dummy/dummy.component';
+
 @NgModule({
   declarations: [
     AppComponent,
-    StringToNumberPipe
+    StringToNumberPipe,
+    DummyComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +41,10 @@ import { StringToNumberPipe } from './pipes/string-to-number.pipe';
     ReactiveFormsModule,
     MatListModule,
     MatIconModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
+    AngularFireAuthModule,
   ],
   providers: [
     UserService,

@@ -16,34 +16,34 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let q of quiz; let i = index;">
+            <tr *ngFor="let quiz of quizList; let i = index;">
                 <th scope="row">{{ i+1 }}</th>
-                <td>{{ q.question }}</td>
+                <td>{{ quiz.question }}</td>
                 <!-- <td>{{ q.options.optiona }}</td> -->
                 <!-- <td>{{ q.options.optionb }}</td> -->
                 <!-- <td>{{ q.options.optionc }}</td> -->
                 <!-- <td>{{ q.options.optiond }}</td> -->
-                <td>{{ q.options[0] }}</td>
-                <td>{{ q.options[1] }}</td>
-                <td>{{ q.options[2] }}</td>
-                <td>{{ q.options[3] }}</td>
-                <td>{{ q.answer }}</td>
-                <td>{{ q.ansindex }}</td>
+                <td>{{ quiz.options[0] }}</td>
+                <td>{{ quiz.options[1] }}</td>
+                <td>{{ quiz.options[2] }}</td>
+                <td>{{ quiz.options[3] }}</td>
+                <td>{{ quiz.answer }}</td>
+                <td>{{ quiz.ansIndex }}</td>
                 <td>
-                    <button class="btn btn-primary btn-sm mx-1" (click)="getQuizById(q.id)">Edit</button>
-                    <button class="btn btn-primary btn-sm mx-1" (click)="deleteQuiz(q.id)">Delete</button>
+                    <button class="btn btn-primary btn-sm mx-1" (click)="getQuizById(quiz.id)">Edit</button>
+                    <button class="btn btn-primary btn-sm mx-1" (click)="deleteQuiz(quiz.id)">Delete</button>
                 </td>
             </tr>
         </tbody>
     </table>
     <h3 class="text-center">Add / Update Quiz</h3>
-    <input type="number" class="form-control" [(ngModel)]="q.id" hidden readonly/>
+    <input type="number" class="form-control" [(ngModel)]="quiz.id" hidden readonly/>
     <div class="row mb-3 align-items-center">
         <div class="col-3">
             <label for="question" class="form-label">Question</label>
         </div>
         <div class="col-8">
-            <input type="text" class="form-control" [(ngModel)]="q.question"/>
+            <input type="text" class="form-control" [(ngModel)]="quiz.question"/>
         </div>
     </div>
     <div class="row mb-3 align-items-center">
@@ -52,7 +52,7 @@
         </div>
         <div class="col-8">
             <!-- <input type="text" class="form-control" name="optiona" [(ngModel)]="q.options.optiona"/>  -->
-            <input type="text" class="form-control" [(ngModel)]="q.options[0]"/> 
+            <input type="text" class="form-control" [(ngModel)]="quiz.options[0]"/> 
         </div>
     </div>
     <div class="row mb-3 align-items-center">
@@ -61,7 +61,7 @@
         </div>
         <div class="col-8">
             <!-- <input type="text" class="form-control" name="optionb" [(ngModel)]="q.options.optionb"/>  -->
-            <input type="text" class="form-control" name="optionb" [(ngModel)]="q.options[1]"/> 
+            <input type="text" class="form-control" name="optionb" [(ngModel)]="quiz.options[1]"/> 
         </div>
     </div>
     <div class="row mb-3 align-items-center">
@@ -70,7 +70,7 @@
         </div>
         <div class="col-8">
             <!-- <input type="text" class="form-control" name="optionc" [(ngModel)]="q.options.optionc"/>  -->
-            <input type="text" class="form-control" name="optionc" [(ngModel)]="q.options[2]"/> 
+            <input type="text" class="form-control" name="optionc" [(ngModel)]="quiz.options[2]"/> 
         </div>
     </div>
     <div class="row mb-3 align-items-center">
@@ -79,7 +79,7 @@
         </div>
         <div class="col-8">
             <!-- <input type="text" class="form-control" name="optiond" [(ngModel)]="q.options.optiond"/>  -->
-            <input type="text" class="form-control" name="optiond" [(ngModel)]="q.options[3]"/> 
+            <input type="text" class="form-control" name="optiond" [(ngModel)]="quiz.options[3]"/> 
         </div>
     </div>
     <div class="row mb-3 align-items-center">
@@ -87,7 +87,7 @@
             <label for="answer" class="form-label">Answer</label>
         </div>
         <div class="col-8">
-            <input type="text" class="form-control" [(ngModel)]="q.answer"/> 
+            <input type="text" class="form-control" [(ngModel)]="quiz.answer"/> 
         </div>
     </div>
     <div class="row mb-3 align-items-center">
@@ -95,7 +95,7 @@
             <label for="ansindex" class="form-label">Index</label>
         </div>
         <div class="col-8">
-            <input type="number" class="form-control" [(ngModel)]="q.ansindex"/> 
+            <input type="number" class="form-control" [(ngModel)]="quiz.ansIndex"/> 
         </div>
     </div>
     <div class="row mb-3 justify-content-center">{{msg}}</div>

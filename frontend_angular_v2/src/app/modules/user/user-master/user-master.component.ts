@@ -1,6 +1,6 @@
 import { Component, OnInit  } from '@angular/core';
 import { Router } from '@angular/router';
-import { User } from 'src/app/classes/user/user';
+import { User } from 'src/app/classes/user';
 import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
@@ -10,49 +10,60 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 
 export class UserMasterComponent implements OnInit {
-
-  user!: User[];
-  u!: User;
+  userList: User[] = [];
+  user: User = {} as User;
   msg='';
 
   constructor(private us: UserService, private router: Router) { }
 
   ngOnInit(): void {
-    this.showAll();
+    this.getAllUsers();
   }
 
-  showAll(){
+  getAllUsers() {
     this.us.getUserDetails().subscribe(
-      (response) => { this.user = response},
-      (error) => console.log(error),
+      response => { this.userList = response.map(x=>x.payload.doc.data()) as User[]},
+      // response => console.log(response),
+      error => console.log(error),
       () => console.log('completed')
     )
   }
 
-  getUserById(id: number){
-    this.us.getUserById(id).subscribe(
-      (response) => {this.u = response},
-      (error) => console.log(error),
+  getUserById(id: string) {
+    this.us
+    .getUserById(id)
+    .subscribe(
+      response => { this.user = response.payload.data() as User},
+      // response => console.log(response),
+      error => console.log(error),
       () => console.log('completed')
-    )
+    );
   }
 
-  addUser(){
-    this.us.sendUserDetails(this.u);
-    this.msg = "User added successfully.";
+  addUser() {
+    this.us
+      .sendUserDetails(this.user)
+      .then(()=>this.msg = "User added successfully.")
+      .catch(err=>this.msg = `Error adding user ${err}`);
   }
 
-  updateUser(){
-    this.us.updateUserDetails(this.u.id, this.u)
-    this.msg = "User updated successfully.";
+  updateUser(/*id: string*/) {
+    /*
+    this.us
+      .updateUserDetails(id, this.u)
+      .then(()=>this.msg = "User updated successfully.")
+      .catch(err=>this.msg=`Error updating user ${err}`);
+    */
   }
 
-  deleteUser(id: number){
-    this.us.deleteUserDetails(id);
-    this.msg = "User deleted successfully.";
+  deleteUser(id: string) {
+    this.us
+      .deleteUserDetails(id)
+      .then(()=>this.msg = "User deleted successfully.")
+      .catch(err=>this.msg=`Error deleting user ${err}`);
   }
 
-  goToQuizMaster(){
+  goToQuizMaster() {
     this.router.navigate(['/quizMaster'])
   }
 }

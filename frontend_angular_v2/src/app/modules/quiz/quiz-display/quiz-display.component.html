@@ -9,7 +9,7 @@
                             <mat-list-option class="blue-grey-text" value="{{opt}}" *ngFor="let opt of item.options">{{opt}}</mat-list-option>
                             <span *ngIf="selectedOption.untouched">* Please click one of the options</span>
                         </mat-selection-list>
-                        <p>Option selected: {{options.selectedOptions.selected[0]?.value}}</p>
+                        <p>Option selected: {{options.selectedOptions.selected[0].value}}</p>
                     </div>
                 </div>
             </div>

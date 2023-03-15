@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { User } from 'src/app/classes/user/user';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { User } from 'src/app/classes/user';
 
 @Injectable({
   providedIn: 'root'
@@ -12,38 +13,49 @@ export class UserService {
   userServer = 'http://localhost:3000/user';
 
   /* inject HttpClient to make API calls */
-  constructor(private hc:HttpClient) { }
+  constructor(private hc: HttpClient, private fs: AngularFirestore) { }
 
   /* for user - registration, login & admin */
-  sendUserDetails(newUser:User){
+  sendUserDetails(user: User){
+    /*
     this.hc.post(this.userServer, newUser).subscribe(
       (response) => console.log(response),
       (error) => console.log(error),
       () => console.log("completed")
     )
+    */
+      return this.fs.collection('user').add(user);
   }
 
   getUserDetails(){
-    return this.hc.get<User[]>(this.userServer);
+    // return this.hc.get<User[]>(this.userServer);
+    return this.fs.collection('user').snapshotChanges();
   }
 
-  getUserById(id: number){
-    return this.hc.get<User>(`${this.userServer}/${id}`);
+  getUserById(id: string){
+    // return this.hc.get<User>(`${this.userServer}/${id}`);
+    return this.fs.collection('user').doc(id).snapshotChanges();
   }
 
-  updateUserDetails(id: number, updateUser: User){
-    this.hc.put<User>(`${this.userServer}/${id}`, updateUser).subscribe(
+  updateUserDetails(id: string, user: User){
+    /*
+    this.hc.put<User>(`${this.userServer}/${id}`, user).subscribe(
       (response) => console.log(response),
       (error) => console.log(error),
       () => console.log("completed")
     )
+    */
+   return this.fs.collection('user').doc(id).update(user);
   }
 
-  deleteUserDetails(id:number){
+  deleteUserDetails(id: string){
+    /*
     this.hc.delete(`${this.userServer}/${id}`).subscribe(
       (response) => console.log(response),
       (error) => console.log(error),
       () => console.log("completed")
     )
+    */
+   return this.fs.collection('user').doc(id).delete();
   }  
 }

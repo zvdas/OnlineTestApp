@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Answers } from 'src/app/classes/answers/answers';
-import { Quiz } from 'src/app/classes/quiz/quiz';
+import { Answers } from 'src/app/classes/answers';
+import { Quiz } from 'src/app/classes/quiz';
 import { AnswersService } from 'src/app/services/answers/answers.service';
 import { QuizService } from 'src/app/services/quiz/quiz.service';
 
@@ -12,34 +12,33 @@ import { QuizService } from 'src/app/services/quiz/quiz.service';
 })
 
 export class QuizResultComponent implements OnInit {
-
-  quiz!: Quiz[];
-  answers!:Answers[];
+  quiz: Quiz[] = []; 
+  answers: Answers[] = [];
   currentIndex: number = 0;
   endIndex: number = this.quiz.length;
 
   constructor(private qs: QuizService, private as: AnswersService, private router: Router) { }
 
   ngOnInit(): void {
-
     this.getQuestions();
-    this.getAnsers();
-
+    this.getAnswers();
   }
 
   getQuestions() {
     this.qs.getQuizDetails().subscribe(
-      (response)=>  {this.quiz = response;},
-      (error)=>     console.log(error),
-      ()=>          console.log("completed")
+      response =>  {this.quiz = response.map(res=>res.payload.doc.data() as Quiz)},
+      // response => console.log(response),
+      error => console.log(error),
+      () => console.log("completed")
     )
   }
   
-  getAnsers() {
+  getAnswers() {
     this.as.getAnswerDetails().subscribe(
-      (response)=>  {this.answers = response;},
-      (error)=>     console.log(error),
-      ()=>          console.log("completed")
+      response => {this.answers = response.map(res=>res.payload.doc.data() as Answers)},
+      // response => console.log(response),
+      error => console.log(error),
+      () => console.log("completed")
     )
   }
 
