@@ -12,6 +12,7 @@ import { QuizService } from 'src/app/services/quiz/quiz.service';
 })
 
 export class QuizResultComponent implements OnInit {
+
   quiz: Quiz[] = []; 
   answers: Answers[] = [];
   currentIndex: number = 0;

@@ -5,7 +5,6 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './quiz-review.component.html',
   styleUrls: ['./quiz-review.component.css']
 })
-
 export class QuizReviewComponent implements OnInit {
 
   constructor() { }

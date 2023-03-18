@@ -6,10 +6,12 @@ import { MatIconModule } from '@angular/material/icon';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+/*
 import { QuizModule } from './modules/quiz/quiz.module';
 import { ResultModule } from './modules/result/result.module';
 import { ReviewModule } from './modules/review/review.module';
 import { UserModule } from './modules/user/user.module';
+*/
 import { UserService } from './services/user/user.service';
 import { QuizService } from './services/quiz/quiz.service';
 import { AnswersService } from './services/answers/answers.service';
@@ -21,20 +23,25 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { environment } from 'src/environments/environment';
-import { DummyComponent } from './authentication/dummy/dummy.component';
+import { AuthenticationModule } from './modules/authentication/authentication.module';
+import { QuizModule } from './modules/quiz/quiz.module';
+import { UserModule } from './modules/user/user.module';
+import { ResultModule } from './modules/result/result.module';
+import { ReviewModule } from './modules/review/review.module';
+import { LayoutModule } from './modules/layout/layout.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    StringToNumberPipe,
-    DummyComponent
+    StringToNumberPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    AuthenticationModule,
     QuizModule,
-    ReviewModule,
     ResultModule,
+    ReviewModule,
     UserModule,
     HttpClientModule,
     FormsModule,
@@ -45,6 +52,7 @@ import { DummyComponent } from './authentication/dummy/dummy.component';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     AngularFireAuthModule,
+    LayoutModule,
   ],
   providers: [
     UserService,

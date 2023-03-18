@@ -10,6 +10,7 @@ import { QuizService } from 'src/app/services/quiz/quiz.service';
 })
 
 export class QuizMasterComponent implements OnInit {
+
   quiz: Quiz = {} as Quiz;
   quizList: Quiz[] = [];
   msg='';

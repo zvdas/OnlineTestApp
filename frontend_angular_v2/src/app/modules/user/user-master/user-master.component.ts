@@ -1,4 +1,4 @@
-import { Component, OnInit  } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/classes/user';
 import { UserService } from 'src/app/services/user/user.service';
@@ -10,6 +10,7 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 
 export class UserMasterComponent implements OnInit {
+
   userList: User[] = [];
   user: User = {} as User;
   msg='';
@@ -66,4 +67,5 @@ export class UserMasterComponent implements OnInit {
   goToQuizMaster() {
     this.router.navigate(['/quizMaster'])
   }
+
 }

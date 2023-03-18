@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/classes/user';
 import { UserService } from 'src/app/services/user/user.service';
@@ -12,20 +12,21 @@ import { UserService } from 'src/app/services/user/user.service';
 
 export class LoginComponent implements OnInit {
   user: User[] = [];
-  loginForm!: FormGroup;
   currentUser: User = {} as User;
   msg='';
 
-  constructor(private fb: FormBuilder, private us: UserService, private router: Router) {
-    
-    this.loginForm = this.fb.group({
-      uname : ["", Validators.required],
-      pword : ["", Validators.required]
-    })
-
-  }
+  loginForm = new FormGroup({
+    uname: new FormControl('', [Validators.required]),
+    pword: new FormControl(''),
+  });
+  
+  constructor(private us: UserService, private router: Router) { }
 
   ngOnInit(): void {
+    this.getUserList();
+  }
+
+  getUserList() {
     this.us.getUserDetails().subscribe(
       (response) => {this.user = response.map(res=>res.payload.doc.data() as User)},
       (error) => console.log(error),

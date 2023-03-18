@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user/user.service';
 
@@ -10,20 +10,20 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 
 export class RegisterComponent implements OnInit {
-  registerForm!: FormGroup;
   msg='';
 
-  constructor(private fb: FormBuilder, private us: UserService, private router: Router) {
-    this.registerForm = this.fb.group({
-      full_name   : ["",Validators.required],
-      email  : ["",Validators.required],
-      username   : ["",Validators.required],
-      password  : ["",Validators.required],
-      isAdmin : [false]
-    })
-  }
+  registerForm = new FormGroup({
+    full_name: new FormControl('', [Validators.required]),
+    username: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required]),
+    password: new FormControl('', [Validators.required]),
+    isAdmin: new FormControl(false),
+  });
 
-  ngOnInit(): void {}
+  constructor(private us: UserService, private router: Router) { }
+
+  ngOnInit(): void {
+  }
 
   onClickRegister(){
     console.log(this.registerForm.value);
