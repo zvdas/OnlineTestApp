@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Quiz } from 'src/app/classes/quiz/quiz';
+import { Quiz } from 'src/app/models/quiz';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +24,7 @@ export class QuizService {
       () => console.log("completed")
     )
     */
+    console.log(quiz);
     this.fs.collection('quiz').add(quiz);
   }
 

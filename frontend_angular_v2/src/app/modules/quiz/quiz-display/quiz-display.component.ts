@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Quiz } from 'src/app/classes/quiz';
+import { Quiz } from 'src/app/models/quiz';
 import { AnswersService } from 'src/app/services/answers/answers.service';
 import { QuizService } from 'src/app/services/quiz/quiz.service';
 

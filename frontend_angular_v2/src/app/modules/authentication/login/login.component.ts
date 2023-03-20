@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { User } from 'src/app/classes/user';
-import { UserService } from 'src/app/services/user/user.service';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+
+import { User } from 'src/app/models/user';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -17,24 +19,35 @@ export class LoginComponent implements OnInit {
 
   loginForm = new FormGroup({
     uname: new FormControl('', [Validators.required]),
-    pword: new FormControl(''),
+    pword: new FormControl('', [Validators.required]),
   });
   
-  constructor(private us: UserService, private router: Router) { }
+  constructor(private as: AuthService, private router: Router) { }
 
   ngOnInit(): void {
-    this.getUserList();
-  }
+    /*
+    const auth = getAuth();
 
-  getUserList() {
-    this.us.getUserDetails().subscribe(
-      (response) => {this.user = response.map(res=>res.payload.doc.data() as User)},
-      (error) => console.log(error),
-      () => console.log("completed")
-    )
+    console.log(auth);
+    
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/firebase.User
+        const uid = user.uid;
+        console.log('user logged in');
+        // ...
+      } else {
+        // User is signed out
+        console.log('user logged out');
+        // ...
+      }
+    });
+    */
   }
 
   onClickLogin(){
+    /*
     if(this.user[this.user.map(x=>x.username).indexOf(this.loginForm.value.uname)].password===this.loginForm.value.pword){
       this.msg = 'Login Successful. Redirecting to quiz now.';
       this.currentUser = this.user[this.user.map(x=>x.username).indexOf(this.loginForm.value.uname)];
@@ -48,6 +61,9 @@ export class LoginComponent implements OnInit {
     }else{
       this.msg = 'Incorrect username or password. Please try again.'
     }
+    */
+
+    this.as.loginRegisteredUser(this.loginForm.controls['uname'].value, this.loginForm.controls['pword'].value);
   }
 
   goToRegister(){

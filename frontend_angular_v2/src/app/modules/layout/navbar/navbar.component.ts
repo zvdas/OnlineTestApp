@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Auth } from 'src/app/models/auth';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -8,22 +10,17 @@ import { Router } from '@angular/router';
 })
 
 export class NavbarComponent implements OnInit {
+  currentUser: Auth = JSON.parse(localStorage.getItem('user')!);
+  currentDate = new Date();
 
-  pDetails: any;
-  pDetailsparsed: any;
-
-  constructor(private router: Router) { }
+  constructor(private as: AuthService, private router: Router) { }
 
   ngOnInit(): void {
-    this.pDetails = localStorage.getItem('participant');
-    this.pDetailsparsed = JSON.parse(this.pDetails);
-  }
 
-  curDate = new Date();
+  }
   
   Logout() {
-    localStorage.clear();
-    this.router.navigate(['/register']);
+    this.as.logOutUser();
   }
 
 }

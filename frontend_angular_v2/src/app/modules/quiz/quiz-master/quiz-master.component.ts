@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Quiz } from 'src/app/classes/quiz';
+import { Quiz } from 'src/app/models/quiz';
 import { QuizService } from 'src/app/services/quiz/quiz.service';
 
 @Component({
@@ -43,7 +43,7 @@ export class QuizMasterComponent implements OnInit {
   
   addQuiz(){
     console.log(`add  quiz: ${JSON.stringify(this.quiz)}`)
-    // this.qs.addQuizDetails(this.quiz);
+    this.qs.addQuizDetails(this.quiz);
     this.msg = "Quiz added successfully.";
   }
   

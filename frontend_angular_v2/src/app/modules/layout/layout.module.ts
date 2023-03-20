@@ -8,19 +8,24 @@ import { ErrorComponent } from './error/error.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FormComponent } from './form/form.component';
 import { TableComponent } from './table/table.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
     ErrorComponent,
     NavbarComponent,
     FormComponent,
-    TableComponent
+    TableComponent,
+    DashboardComponent,
   ],
   imports: [
     CommonModule,
     LayoutRoutingModule,
     MatTableModule,
-    MatFormFieldModule    
+    MatFormFieldModule,
+  ],
+  exports: [
+    NavbarComponent,
   ]
 })
 
