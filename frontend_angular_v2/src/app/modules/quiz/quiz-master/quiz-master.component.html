@@ -1,3 +1,7 @@
+<app-navbar></app-navbar>
+<app-table [tableData]="tableData"></app-table>
+<app-form [formInputData]="formInputData"></app-form>
+<!--
 <div class="container">
     <h3 class="text-center">List of Quiz Questions</h3>
     <button class="btn btn-primary" (click)="goToUserMaster()">User Master</button>
@@ -17,12 +21,14 @@
         </thead>
         <tbody>
             <tr *ngFor="let quiz of quizList; let i = index;">
+                <!-
                 <th scope="row">{{ i+1 }}</th>
                 <td>{{ quiz.question }}</td>
-                <!-- <td>{{ q.options.optiona }}</td> -->
-                <!-- <td>{{ q.options.optionb }}</td> -->
-                <!-- <td>{{ q.options.optionc }}</td> -->
-                <!-- <td>{{ q.options.optiond }}</td> -->
+                <td>{{ q.options.optiona }}</td>
+                <td>{{ q.options.optionb }}</td>
+                <td>{{ q.options.optionc }}</td>
+                <td>{{ q.options.optiond }}</td>
+                <!-
                 <td>{{ quiz.options[0] }}</td>
                 <td>{{ quiz.options[1] }}</td>
                 <td>{{ quiz.options[2] }}</td>
@@ -36,6 +42,8 @@
             </tr>
         </tbody>
     </table>
+    -->
+    <!--
     <h3 class="text-center">Add / Update Quiz</h3>
     <input type="number" class="form-control" [(ngModel)]="quiz.id" hidden readonly/>
     <div class="row mb-3 align-items-center">
@@ -51,7 +59,7 @@
             <label for="opta" class="form-label">A</label>
         </div>
         <div class="col-8">
-            <!-- <input type="text" class="form-control" name="optiona" [(ngModel)]="q.options.optiona"/>  -->
+            <input type="text" class="form-control" name="optiona" [(ngModel)]="q.options.optiona"/> 
             <input type="text" class="form-control" [(ngModel)]="quiz.options[0]"/> 
         </div>
     </div>
@@ -60,7 +68,7 @@
             <label for="optb" class="form-label">B</label>
         </div>
         <div class="col-8">
-            <!-- <input type="text" class="form-control" name="optionb" [(ngModel)]="q.options.optionb"/>  -->
+            <input type="text" class="form-control" name="optionb" [(ngModel)]="q.options.optionb"/> 
             <input type="text" class="form-control" name="optionb" [(ngModel)]="quiz.options[1]"/> 
         </div>
     </div>
@@ -69,7 +77,7 @@
             <label for="optc" class="form-label">C</label>
         </div>
         <div class="col-8">
-            <!-- <input type="text" class="form-control" name="optionc" [(ngModel)]="q.options.optionc"/>  -->
+            <input type="text" class="form-control" name="optionc" [(ngModel)]="q.options.optionc"/> 
             <input type="text" class="form-control" name="optionc" [(ngModel)]="quiz.options[2]"/> 
         </div>
     </div>
@@ -78,7 +86,7 @@
             <label for="optd" class="form-label">D</label>
         </div>
         <div class="col-8">
-            <!-- <input type="text" class="form-control" name="optiond" [(ngModel)]="q.options.optiond"/>  -->
+            <input type="text" class="form-control" name="optiond" [(ngModel)]="q.options.optiond"/> 
             <input type="text" class="form-control" name="optiond" [(ngModel)]="quiz.options[3]"/> 
         </div>
     </div>
@@ -102,3 +110,4 @@
     <button class="btn btn-primary mx-1" (click)="addQuiz()">Add</button>
     <button class="btn btn-primary mx-1" (click)="updateQuiz()">Update</button>
 </div>
+-->

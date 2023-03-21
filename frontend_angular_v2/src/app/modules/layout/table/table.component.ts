@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -17,10 +18,13 @@ export interface PeriodicElement {
 })
 
 export class TableComponent implements OnInit {
+
+  @Input() tableData: any;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   
-  ELEMENT_DATA: PeriodicElement[] = [
+  data: any[] = [
+    /*
     {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
     {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
     {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
@@ -31,8 +35,10 @@ export class TableComponent implements OnInit {
     {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
     {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
     {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
+    */
   ];
   
+  /*
   columns = [
     {
       columnDef: 'position',
@@ -55,18 +61,29 @@ export class TableComponent implements OnInit {
       cell: (element: PeriodicElement) => `${element.symbol}`,
     },
   ];
+  */
 
-  dataSource = new MatTableDataSource(this.ELEMENT_DATA);
+  columns: any;
+
+  dataSource = new MatTableDataSource(this.data);
   
-  displayedColumns = this.columns.map(c => c.columnDef);
+  displayedColumns: any;
+
+  constructor(private dialog: MatDialog) {}
 
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    this.getTableNames();
   }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+  }
+
+  getTableNames() {
+    this.dataSource.data = this.tableData.data;
+    this.columns = this.tableData.columns;
+    this.displayedColumns = this.columns.map((x: { key: any; }) => x.key);
   }
 
   applyFilter(event: Event) {
@@ -78,4 +95,7 @@ export class TableComponent implements OnInit {
     }
   }
 
+  openAddTableDialog() {
+    // this.dialog.open()
+  }
 }

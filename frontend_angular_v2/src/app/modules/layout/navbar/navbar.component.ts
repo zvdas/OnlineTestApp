@@ -10,13 +10,15 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 })
 
 export class NavbarComponent implements OnInit {
-  currentUser: Auth = JSON.parse(localStorage.getItem('user')!);
+  
+  currentUser: Auth = {} as Auth;
+
   currentDate = new Date();
 
   constructor(private as: AuthService, private router: Router) { }
 
   ngOnInit(): void {
-
+    this.currentUser = JSON.parse(localStorage.getItem('user')!)['providerData'][0];
   }
   
   Logout() {

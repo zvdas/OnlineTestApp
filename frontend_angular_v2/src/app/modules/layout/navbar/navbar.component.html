@@ -1,6 +1,7 @@
 <nav class="navbar navbar-expand-lg bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">OTA</a>
+        
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="#">Home</a>
@@ -9,30 +10,21 @@
         
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item">
-                <span class="nav-link">Hi, {{currentUser.displayName|titlecase}}</span>
+                <span class="nav-link">{{currentUser.email}}</span>
             </li>
+
             <li class="nav-item">
                 <span class="nav-link">{{currentDate|date:"longDate"}}</span>
             </li>
+
             <li class="nav-item">
-                <span class="nav-link">{{currentDate|date:"fullTime"}}</span>
+                <span class="nav-link">{{currentDate|date:"mediumTime"}}</span>
             </li>
+            
             <li class="nav-item">
                 <a class="nav-link" (click)="Logout()">Logout</a>
             </li>
         </ul>
+
     </div>
-    <!--
-        <div class="nav-wrapper">
-        <a href="#" class="brand-logo center">Quiz</a>
-        <span style="position: absolute; left: 10px;">Hi, {{pDetailsparsed.fullname|titlecase}}</span>
-        <span style="position: absolute; left: 200px;">{{curDate|date:"longDate"}}</span>
-        <span style="position: absolute; right: 200px;">{{curDate|date:"fullTime"}}</span>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li>
-                <a (click)="Logout()">Logout</a>
-            </li>
-        </ul>
-    </div>
-    -->
 </nav>

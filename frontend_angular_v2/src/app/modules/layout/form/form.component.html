@@ -1,1 +1,25 @@
-<p>form works!</p>
+<div class="container m-2 p-2 d-flex justify-content-center">
+    <div class="card col-8">
+        <h1 class="card-title text-center">Add/Edit Quiz</h1>
+        <form [formGroup]="inputFormGroup" (ngSubmit)="submitForm()">
+            <ng-container *ngFor="let title of formTitles; index as i">
+                <ng-container *ngFor="let name of formControlNames; index as j">
+                    <ng-container *ngIf="i === j">
+                        <div class="row mb-3 align-items-center justify-content-center">
+                            <div class="col-3">
+                                <label class="form-label">{{title}}</label>
+                            </div>
+                            <div class="col-8">
+                                <input class="form-control" formControlName={{name}}/>
+                            </div>
+                        </div>
+                    </ng-container>
+                </ng-container>
+            </ng-container>
+
+            <div class="row mb-3 align-items-center justify-content-center">
+                <input class="btn btn-primary col-8" type="submit" value="Submit"/>
+            </div>
+        </form>
+    </div>
+</div>

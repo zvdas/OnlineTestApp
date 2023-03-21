@@ -21,9 +21,8 @@ import { LayoutModule } from '../layout/layout.module';
     LayoutModule
   ],
   exports: [
-    LoginComponent, 
-    AuthComponent
-  ],
+    LoginComponent
+  ]
 })
 
 export class AuthenticationModule {}

@@ -7,8 +7,8 @@ import { AuthService } from 'src/app/services/auth/auth.service';
   providedIn: 'root'
 })
 
-export class AuthGuard implements CanActivate {
-
+export class RouteProtectionGuard implements CanActivate {
+  
   constructor(private as: AuthService, private router: Router) {}
 
   canActivate(
@@ -20,7 +20,7 @@ export class AuthGuard implements CanActivate {
     const currentUser = this.as.isLoggedIn;
 
     if(!currentUser) {
-      window.alert('Access Denied. Login to access this page.');
+      window.alert('Access Denied.');
       // this.router.navigateByUrl('/auth/login')
       // this.router.navigate(['/error', {errorCode: 401, errorTitle: 'Access Denied', errorDescription: 'Access Denied. Login to access this page.'}]);
     }

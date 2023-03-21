@@ -22,6 +22,8 @@ import { ResultModule } from './modules/result/result.module';
 import { ReviewModule } from './modules/review/review.module';
 import { LayoutModule } from './modules/layout/layout.module';
 import { StringToNumberPipe } from './pipes/string-to-number.pipe';
+import { AuthGuard } from './guards/auth/auth.guard';
+import { RouteProtectionGuard } from './guards/route-protection/route-protection.guard';
 
 @NgModule({
   declarations: [AppComponent, StringToNumberPipe],
@@ -44,7 +46,7 @@ import { StringToNumberPipe } from './pipes/string-to-number.pipe';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
   ],
-  providers: [UserService, QuizService, AnswersService],
+  providers: [UserService, QuizService, AnswersService, AuthGuard, RouteProtectionGuard],
   bootstrap: [AppComponent],
 })
 

@@ -3,15 +3,16 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './guards/auth/auth.guard';
+import { RouteProtectionGuard } from './guards/route-protection/route-protection.guard';
 import { ErrorComponent } from './modules/layout/error/error.component';
 
 const routes: Routes = [
-  // /*
+  /*
   {
     path: '',
-    component: AppComponent
+    component: AppComponent,
   },
-  // */
+  */
   /* Lazy Load Modules */
   {
     path: 'auth',
@@ -19,7 +20,7 @@ const routes: Routes = [
       import('./modules/authentication/authentication.module').then(
         (m) => m.AuthenticationModule
       ),
-    canActivate: [AuthGuard],
+    canActivate: [RouteProtectionGuard],
   },
   {
     path: 'quiz',
@@ -45,22 +46,26 @@ const routes: Routes = [
       import('./modules/user/user.module').then((m) => m.UserModule),
     canActivate: [AuthGuard],
   },
-  /*
+  // /*
   {
     path: '',
-    redirectTo: '/dashboard',
-    // redirectTo: '/auth/login',
+    // redirectTo: '/dashboard',
+    redirectTo: '/auth/login',
     pathMatch: 'full',
   },
-  */
+  // */
+  // /*
   {
     path: 'layout',
     loadChildren: () =>
       import('./modules/layout/layout.module').then((m) => m.LayoutModule),
   },
+  // */
   {
     path: '**',
-    component: ErrorComponent
+    loadChildren: () =>
+      import('./modules/layout/layout.module').then((m) => m.LayoutModule),
+    // component: ErrorComponent,
   },
 ];
 
