@@ -16,6 +16,7 @@ export class QuizMasterComponent implements OnInit {
 
   quiz: Quiz = {} as Quiz;
   quizList: Quiz[] = []; 
+  isLoaded: boolean = false;
   msg='';
 
   formInputData: any = {
@@ -33,76 +34,53 @@ export class QuizMasterComponent implements OnInit {
     component: FormComponent
   };
 
-  // /*
   tableData: any = {
-    // data: this.quizList,
     data: this.quizList,
-    /*
-      [
-        {
-          "question": "",
-          "ansIndex": 0,
-          "options": [
-            "",
-            "",
-            "",
-            ""
-          ],
-          "answer": ""
-        },
-      {
-        "question": "a",
-        "answer": "f",
-        "options": [
-          "b",
-          "c",
-          "d",
-          "e"
-        ],
-        "id": "",
-        "ansIndex": "g"
-      }
-    ],
-    */
     columns: [
       {key: 'index', label: '#'},
       {key: 'question', label: 'Question'},
+      /*
       {key: 'options[0]', label: 'Option A'},
       {key: 'options[1]', label: 'Option B'},
       {key: 'options[2]', label: 'Option C'},
       {key: 'options[3]', label: 'Option D'},
+      */
+      {key: 'optionA', label: 'Option A'},
+      {key: 'optionB', label: 'Option B'},
+      {key: 'optionC', label: 'Option C'},
+      {key: 'optionD', label: 'Option D'},
       {key: 'answer', label: 'Answer'},
       {key: 'ansIndex', label: 'Answer Index'},
       {key: 'action', label: 'Action'},
     ]
   };
-  // */
 
   constructor(private qs: QuizService, private router: Router) { }
   
   ngOnInit(): void {
     document.body.style.backgroundColor = 'DarkCyan';
     // document.body.style.backgroundImage = 'linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%)';
-    // this.getQuizList();
-  }
-  
-  ngAfterViewinit(): void {
     this.getQuizList();
   }
-
+  
   updateQuizForm(quizData: any) {
-    this.qs.addQuizDetails({
-      // id: '',
+    this.qs.addQuizDetails(quizData);
+      /*
+      {
+      id: '',
       question: quizData['question'],
+      /*
       options: [
         quizData['optionA'],
         quizData['optionB'],
         quizData['optionC'],
         quizData['optionD']
       ],
+      optionA: 
       answer: quizData['answer'],
       ansIndex: quizData['ansIndex']
     })
+    */
   }
   
   getQuizList() {
@@ -110,8 +88,23 @@ export class QuizMasterComponent implements OnInit {
       .getQuizDetails()
       .subscribe(res => {
         res.map(item => {
-          this.quizList = this.tableData.data = item.payload.doc.data() as Quiz[]
+          this.quizList.push({
+            id: item.payload.doc.id,
+            question: JSON.parse(JSON.stringify(item.payload.doc.data())).question,
+            // options: JSON.parse(JSON.stringify(item.payload.doc.data())).options,
+            optionA: JSON.parse(JSON.stringify(item.payload.doc.data())).optionA,
+            optionB: JSON.parse(JSON.stringify(item.payload.doc.data())).optionB,
+            optionC: JSON.parse(JSON.stringify(item.payload.doc.data())).optionC,
+            optionD: JSON.parse(JSON.stringify(item.payload.doc.data())).optionD,
+            answer: JSON.parse(JSON.stringify(item.payload.doc.data())).answer,
+            ansIndex: JSON.parse(JSON.stringify(item.payload.doc.data())).ansIndex
+          } as Quiz)
+          this.isLoaded = true;
         })
+        /*
+        this.quizList = res.map(item=>item.payload.doc.data() as Quiz);
+        this.isLoaded = true;
+        */
       })
   }
 

@@ -33,6 +33,8 @@ export class QuizDisplayComponent implements OnInit {
   }
 
   onSubmit(quizForm:NgForm){
+    /*check below for difference between options array and optionA-D */
+    /*
     if(quizForm.value.selectedOption[0] === this.quiz[this.currentIndex].options[this.quiz[this.currentIndex].ansIndex]){
       this.as.createAnswerDetails({
         "selectedOption": quizForm.value.selectedOption[0],
@@ -45,7 +47,7 @@ export class QuizDisplayComponent implements OnInit {
         "answerStatus": "Incorrect",
         "answerScore": 0
       })
-    };
+    };*/
   }
 
   finishQuiz(){

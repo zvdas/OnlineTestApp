@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
-<app-table [tableData]="tableData" [formInputData]="formInputData" (formDataEvent)="updateQuizForm($event)"></app-table>
+<app-table *ngIf="isLoaded === true" [tableData]="tableData" [formInputData]="formInputData" (formDataEvent)="updateQuizForm($event)"></app-table>
 <!-- <app-form [formInputData]="formInputData"></app-form> -->
 
 <!--

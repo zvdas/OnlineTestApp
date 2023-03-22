@@ -36,10 +36,10 @@ export class TableComponent implements OnInit, AfterViewInit {
   constructor(private dialog: MatDialog) {}
 
   ngOnInit(): void {
+    this.getTableNames();
   }
   
   ngAfterViewInit(): void {
-    this.getTableNames();
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
@@ -66,6 +66,7 @@ export class TableComponent implements OnInit, AfterViewInit {
       maxWidth: '100vw',
       width: '50%',
       data: {
+        object: {},
         formTitles: this.formInputData.formTitles,
         formControlNames: this.formInputData.formControlNames,
         inputFormGroup: this.formInputData.inputFormGroup
@@ -75,12 +76,13 @@ export class TableComponent implements OnInit, AfterViewInit {
     dialogRef.afterClosed().subscribe(res=>this.formDataEvent.emit(res));
   }
 
-  openEditDialog() {
+  openEditDialog(object: any) {
     const dialogRef = this.dialog.open(this.formInputData.component, {
       disableClose: true,
       maxWidth: '100vw',
       width: '50%',
       data: {
+        object: object,
         formTitles: this.formInputData.formTitles,
         formControlNames: this.formInputData.formControlNames,
         inputFormGroup: this.formInputData.inputFormGroup
@@ -90,7 +92,7 @@ export class TableComponent implements OnInit, AfterViewInit {
     dialogRef.afterClosed().subscribe(res=>this.formDataEvent.emit(res));
   }
 
-  deleteSelected() {
+  deleteSelected(id: string) {
 
   }
 

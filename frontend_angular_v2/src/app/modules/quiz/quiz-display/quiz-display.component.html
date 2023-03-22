@@ -6,7 +6,8 @@
                     <div class="card-action" *ngFor="let item of quiz.slice(currentIndex,currentIndex+1); let i = index" name="item">
                         <h4>{{ i }}. {{ item.question }}</h4><br><br>
                         <mat-selection-list class="collection answer white blue-grey-text" #options [multiple]="false" name="selectedOption" ngModel #selectedOption="ngModel">
-                            <mat-list-option class="blue-grey-text" value="{{opt}}" *ngFor="let opt of item.options">{{opt}}</mat-list-option>
+                            <!-- check below for difference between options array and optionA-D -->
+                            <!-- <mat-list-option class="blue-grey-text" value="{{opt}}" *ngFor="let opt of item.options">{{opt}}</mat-list-option> -->
                             <span *ngIf="selectedOption.untouched">* Please click one of the options</span>
                         </mat-selection-list>
                         <p>Option selected: {{options.selectedOptions.selected[0].value}}</p>
