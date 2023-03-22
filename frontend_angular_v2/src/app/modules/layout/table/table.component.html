@@ -1,32 +1,99 @@
-<div class="container m-2 p-2 d-flex justify-content-center">
-  <div class="card col-8">
+<div class="m-2 p-2 d-flex justify-content-center">
+  <div class="card col-10">
     <h1 class="card-title text-center">List of Quiz Questions</h1>
 
     <div class="d-flex justify-content-center">
-      <button type="button" class="btn btn-primary col-8"  (click)="openAddTableDialog()">Add</button>
+      <button
+        type="button"
+        class="btn btn-primary col-8"
+        (click)="openAddTableDialog()"
+      >
+        Add
+      </button>
     </div>
 
-    <mat-form-field>
+    <mat-form-field class="m-2">
       <mat-label>Filter</mat-label>
-      <input matInput (keyup)="applyFilter($event)" placeholder="Enter search term" #input>
+      <input
+        matInput
+        (keyup)="applyFilter($event)"
+        placeholder="Enter search term"
+        #input
+      />
     </mat-form-field>
-      
+
     <table mat-table [dataSource]="dataSource" class="m-2 p-2 mat-elevation-z8">
-      <ng-container
-        *ngFor="let column of columns"
-        [matColumnDef]="column.key"
-      >
+      <ng-container *ngFor="let column of columns" [matColumnDef]="column.key">
         <th mat-header-cell *matHeaderCellDef>
           {{ column.label }}
         </th>
         <td mat-cell *matCellDef="let row; let i = index">
-          {{ row[column.key] }}
+          <ng-container [ngSwitch]="column.key">
+            <ng-container *ngSwitchCase="'index'">
+              {{ i + 1 }}
+            </ng-container>
+            
+            <ng-container *ngSwitchCase="'options[0]'">
+              {{ row['options'][0] }}
+            </ng-container>
+
+            <ng-container *ngSwitchCase="'options[1]'">
+              {{ row['options'][1] }}
+            </ng-container>
+            
+            <ng-container *ngSwitchCase="'options[2]'">
+              {{ row['options'][2] }}
+            </ng-container>
+            
+            <ng-container *ngSwitchCase="'options[3]'">
+              {{ row['options'][3] }}
+            </ng-container>
+
+            <ng-container *ngSwitchCase="'action'">
+              <button
+                class="btn btn-primary me-1 col-4"
+                (click)="openEditDialog()"
+              >
+                Edit
+              </button>
+              <button
+                class="btn btn-primary ms-1 col-4"
+                (click)="deleteSelected()"
+              >
+                Delete
+              </button>
+            </ng-container>
+
+            <ng-container *ngSwitchDefault>
+              {{ row[column.key] }}
+            </ng-container>
+          </ng-container>
         </td>
       </ng-container>
-    
+          <!--
+            <ng-container *ngIf="column.key === 'action'; else others">
+              <button
+                class="btn btn-primary me-1 col-4"
+                (click)="openEditDialog()"
+              >
+                Edit
+              </button>
+              <button
+                class="btn btn-primary ms-1 col-4"
+                (click)="deleteSelected()"
+              >
+                Delete
+              </button>
+            </ng-container>
+            <ng-template #others>
+              {{ row[column.key] }}
+            </ng-template>
+          </td>
+        </ng-container>
+          -->
+
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
   </div>
 </div>
-

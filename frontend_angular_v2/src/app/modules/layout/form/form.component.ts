@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-form',
@@ -17,20 +18,20 @@ export class FormComponent implements OnInit {
 
   formTitles: string[] = [];
 
-  constructor() { }
+  constructor(@Inject(MAT_DIALOG_DATA) private data: {formTitles: any, formControlNames: any, inputFormGroup: any}) { }
 
   ngOnInit(): void {
     this.getForm();
   }
 
   getForm() {
-    this.formTitles = this.formInputData.formTitles;
-    this.inputFormGroup = this.formInputData.inputFormGroup;
-    this.formControlNames = this.formInputData.formControlNames;
+    this.formTitles = this.data.formTitles;
+    this.inputFormGroup = this.data.inputFormGroup;
+    this.formControlNames = this.data.formControlNames;
   }  
 
   submitForm() {
-    console.log(this.inputFormGroup.value);
+    // console.log(this.inputFormGroup.value);
   }
 
 }

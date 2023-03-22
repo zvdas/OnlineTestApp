@@ -1,7 +1,7 @@
-import { Options } from "./quiz/options";
+import { Options } from "./options";
 
 export interface Quiz {
-    id: string;
+    // id: string;
     question: string;
     options: string[];
     // options: Options[];

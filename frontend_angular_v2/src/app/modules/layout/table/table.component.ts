@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -17,51 +17,15 @@ export interface PeriodicElement {
   styleUrls: ['./table.component.css']
 })
 
-export class TableComponent implements OnInit {
+export class TableComponent implements OnInit, AfterViewInit {
 
   @Input() tableData: any;
+  @Input() formInputData: any;
+  @Output() formDataEvent = new EventEmitter();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   
-  data: any[] = [
-    /*
-    {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-    {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-    {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-    {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-    {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-    {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-    {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-    {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-    {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-    {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-    */
-  ];
-  
-  /*
-  columns = [
-    {
-      columnDef: 'position',
-      header: 'No.',
-      cell: (element: PeriodicElement) => `${element.position}`,
-    },
-    {
-      columnDef: 'name',
-      header: 'Name',
-      cell: (element: PeriodicElement) => `${element.name}`,
-    },
-    {
-      columnDef: 'weight',
-      header: 'Weight',
-      cell: (element: PeriodicElement) => `${element.weight}`,
-    },
-    {
-      columnDef: 'symbol',
-      header: 'Symbol',
-      cell: (element: PeriodicElement) => `${element.symbol}`,
-    },
-  ];
-  */
+  data: any[] = [];
 
   columns: any;
 
@@ -72,15 +36,16 @@ export class TableComponent implements OnInit {
   constructor(private dialog: MatDialog) {}
 
   ngOnInit(): void {
-    this.getTableNames();
   }
-
-  ngAfterViewInit() {
+  
+  ngAfterViewInit(): void {
+    this.getTableNames();
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 
   getTableNames() {
+    console.log(this.tableData)
     this.dataSource.data = this.tableData.data;
     this.columns = this.tableData.columns;
     this.displayedColumns = this.columns.map((x: { key: any; }) => x.key);
@@ -96,6 +61,37 @@ export class TableComponent implements OnInit {
   }
 
   openAddTableDialog() {
-    // this.dialog.open()
+    const dialogRef = this.dialog.open(this.formInputData.component, {
+      disableClose: true,
+      maxWidth: '100vw',
+      width: '50%',
+      data: {
+        formTitles: this.formInputData.formTitles,
+        formControlNames: this.formInputData.formControlNames,
+        inputFormGroup: this.formInputData.inputFormGroup
+      }
+    })
+
+    dialogRef.afterClosed().subscribe(res=>this.formDataEvent.emit(res));
   }
+
+  openEditDialog() {
+    const dialogRef = this.dialog.open(this.formInputData.component, {
+      disableClose: true,
+      maxWidth: '100vw',
+      width: '50%',
+      data: {
+        formTitles: this.formInputData.formTitles,
+        formControlNames: this.formInputData.formControlNames,
+        inputFormGroup: this.formInputData.inputFormGroup
+      }
+    })
+
+    dialogRef.afterClosed().subscribe(res=>this.formDataEvent.emit(res));
+  }
+
+  deleteSelected() {
+
+  }
+
 }

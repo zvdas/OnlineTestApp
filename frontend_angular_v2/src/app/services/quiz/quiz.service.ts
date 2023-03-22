@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Subject } from 'rxjs';
 import { Quiz } from 'src/app/models/quiz';
 
 @Injectable({
@@ -8,6 +9,10 @@ import { Quiz } from 'src/app/models/quiz';
 })
 
 export class QuizService {
+
+  quizSource = new Subject<Quiz[]>();
+  
+  quizStream$ = this.quizSource.asObservable();
 
   /* declare fake API server url to variables to be called below */
   quizServer = 'http://localhost:3000/quiz';
@@ -58,6 +63,18 @@ export class QuizService {
     )
     */
    this.fs.collection('quiz').doc(id).delete();
+  }
+
+  streamQuiz(value: any) {
+    this.quizSource.next(value);
+  }
+
+  getStreamQuiz() {
+    return this.fs
+      .collection('quiz')
+      .snapshotChanges()
+      .toPromise()
+      .then(res => res?.map(item=>item.payload.doc.data()));
   }
 
 }

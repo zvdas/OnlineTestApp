@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+
 import { Quiz } from 'src/app/models/quiz';
 import { QuizService } from 'src/app/services/quiz/quiz.service';
+import { FormComponent } from '../../layout/form/form.component';
 
 @Component({
   selector: 'app-quiz-master',
@@ -13,7 +15,7 @@ import { QuizService } from 'src/app/services/quiz/quiz.service';
 export class QuizMasterComponent implements OnInit {
 
   quiz: Quiz = {} as Quiz;
-  quizList: Quiz[] = [];
+  quizList: Quiz[] = []; 
   msg='';
 
   formInputData: any = {
@@ -27,47 +29,113 @@ export class QuizMasterComponent implements OnInit {
       optionD: new FormControl(''), 
       answer: new FormControl(''), 
       ansIndex: new FormControl('')
-    })
+    }),
+    component: FormComponent
   };
 
+  // /*
   tableData: any = {
-    data: [
-      {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-      {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-      {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-      {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-      {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-      {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-      {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-      {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-      {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-      {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
+    // data: this.quizList,
+    data: this.quizList,
+    /*
+      [
+        {
+          "question": "",
+          "ansIndex": 0,
+          "options": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "answer": ""
+        },
+      {
+        "question": "a",
+        "answer": "f",
+        "options": [
+          "b",
+          "c",
+          "d",
+          "e"
+        ],
+        "id": "",
+        "ansIndex": "g"
+      }
     ],
+    */
     columns: [
-      {key: 'position', label: 'Position'},
-      {key: 'name', label: 'Name'},
-      {key: 'weight', label: 'Weight'},
-      {key: 'symbol', label: 'Symbol'},
+      {key: 'index', label: '#'},
+      {key: 'question', label: 'Question'},
+      {key: 'options[0]', label: 'Option A'},
+      {key: 'options[1]', label: 'Option B'},
+      {key: 'options[2]', label: 'Option C'},
+      {key: 'options[3]', label: 'Option D'},
+      {key: 'answer', label: 'Answer'},
+      {key: 'ansIndex', label: 'Answer Index'},
       {key: 'action', label: 'Action'},
     ]
   };
+  // */
 
   constructor(private qs: QuizService, private router: Router) { }
-
+  
   ngOnInit(): void {
-    this.showAll();
+    document.body.style.backgroundColor = 'DarkCyan';
+    // document.body.style.backgroundImage = 'linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%)';
+    // this.getQuizList();
   }
   
-  showAll(){
-    this.qs.getQuizDetails().subscribe(
-      // response => console.log(response),
-      response => {this.quizList = response.map(res=>res.payload.doc.data() as Quiz)},
-      error => console.log(error),
-      () => console.log('completed')
-    )
-    console.log(`show quiz: ${JSON.stringify(this.quizList)}`)
+  ngAfterViewinit(): void {
+    this.getQuizList();
   }
 
+  updateQuizForm(quizData: any) {
+    this.qs.addQuizDetails({
+      // id: '',
+      question: quizData['question'],
+      options: [
+        quizData['optionA'],
+        quizData['optionB'],
+        quizData['optionC'],
+        quizData['optionD']
+      ],
+      answer: quizData['answer'],
+      ansIndex: quizData['ansIndex']
+    })
+  }
+  
+  getQuizList() {
+    this.qs
+      .getQuizDetails()
+      .subscribe(res => {
+        res.map(item => {
+          this.quizList = this.tableData.data = item.payload.doc.data() as Quiz[]
+        })
+      })
+  }
+
+  /*
+  getTableData() {
+    console.log(this.quizList);
+    this.tableData = {
+      data: this.quizList,
+      columns: [
+        {key: 'index', label: '#'},
+        {key: 'question', label: 'Question'},
+        {key: 'options[0]', label: 'Option A'},
+        {key: 'options[1]', label: 'Option B'},
+        {key: 'options[2]', label: 'Option C'},
+        {key: 'options[3]', label: 'Option D'},
+        {key: 'answer', label: 'Answer'},
+        {key: 'ansIndex', label: 'Answer Index'},
+        {key: 'action', label: 'Action'},
+      ]
+    };
+  }
+  */
+
+  /*
   getQuizById(id: string){
     this.qs.getQuizByID(id).subscribe(
       // response => console.log(response),
@@ -79,17 +147,15 @@ export class QuizMasterComponent implements OnInit {
   }
   
   addQuiz(){
-    console.log(`add  quiz: ${JSON.stringify(this.quiz)}`)
+    // console.log(`add  quiz: ${JSON.stringify(this.quiz)}`)
     this.qs.addQuizDetails(this.quiz);
     this.msg = "Quiz added successfully.";
   }
   
   updateQuiz(){
-    /*
     console.log(`update quiz: ${this.quiz}`)
     this.qs.updateQuizDetails(this.quiz.id, this.quiz);
     this.msg = "Quiz updated successfully.";
-    */
   }
   
   deleteQuiz(id: string){
@@ -100,7 +166,6 @@ export class QuizMasterComponent implements OnInit {
   goToUserMaster(){
     this.router.navigate(['/userMaster'])
   }
-
-  // this.redirect.emit(this.formInputData);
+  */
 
 }

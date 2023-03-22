@@ -1,6 +1,7 @@
 <app-navbar></app-navbar>
-<app-table [tableData]="tableData"></app-table>
-<app-form [formInputData]="formInputData"></app-form>
+<app-table [tableData]="tableData" [formInputData]="formInputData" (formDataEvent)="updateQuizForm($event)"></app-table>
+<!-- <app-form [formInputData]="formInputData"></app-form> -->
+
 <!--
 <div class="container">
     <h3 class="text-center">List of Quiz Questions</h3>

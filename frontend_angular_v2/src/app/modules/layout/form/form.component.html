@@ -1,25 +1,33 @@
-<div class="container m-2 p-2 d-flex justify-content-center">
-    <div class="card col-8">
-        <h1 class="card-title text-center">Add/Edit Quiz</h1>
-        <form [formGroup]="inputFormGroup" (ngSubmit)="submitForm()">
-            <ng-container *ngFor="let title of formTitles; index as i">
-                <ng-container *ngFor="let name of formControlNames; index as j">
-                    <ng-container *ngIf="i === j">
-                        <div class="row mb-3 align-items-center justify-content-center">
-                            <div class="col-3">
-                                <label class="form-label">{{title}}</label>
-                            </div>
-                            <div class="col-8">
-                                <input class="form-control" formControlName={{name}}/>
-                            </div>
-                        </div>
-                    </ng-container>
-                </ng-container>
-            </ng-container>
-
-            <div class="row mb-3 align-items-center justify-content-center">
-                <input class="btn btn-primary col-8" type="submit" value="Submit"/>
+<form [formGroup]="inputFormGroup" (ngSubmit)="submitForm()">
+  <h1 mat-dialog-title class="text-center mb-3">Add/Edit Quiz</h1>
+  
+  <mat-dialog-content class="mat-typography">
+    <ng-container *ngFor="let title of formTitles; index as i">
+      <ng-container *ngFor="let name of formControlNames; index as j">
+        <ng-container *ngIf="i === j">
+          <div class="row mb-3 align-items-center justify-content-center">
+            <div class="col-3">
+              <label class="form-label">{{ title }}</label>
             </div>
-        </form>
-    </div>
-</div>
+            <div class="col-8">
+              <input class="form-control" formControlName="{{ name }}" />
+            </div>
+          </div>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+  </mat-dialog-content>
+
+  <mat-dialog-actions class="justify-content-center">
+    <button class="btn btn-link" mat-dialog-close>Cancel</button>
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="!inputFormGroup.valid"
+      [mat-dialog-close]="inputFormGroup.value"
+    >
+      Save
+    </button>
+  </mat-dialog-actions>
+
+</form>
