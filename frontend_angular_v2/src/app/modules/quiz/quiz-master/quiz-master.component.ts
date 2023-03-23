@@ -38,7 +38,7 @@ export class QuizMasterComponent implements OnInit {
   tableData: any = {
     data: this.quizList,
     columns: [
-      {key: 'index', label: '#'},
+      // {key: 'index', label: '#'},
       {key: 'question', label: 'Question'},
       {key: 'optionA', label: 'Option A'},
       {key: 'optionB', label: 'Option B'},

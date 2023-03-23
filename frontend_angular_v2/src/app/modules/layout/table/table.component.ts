@@ -38,7 +38,7 @@ export class TableComponent implements OnInit, AfterViewInit {
   }
 
   getTableNames() {
-    console.log(this.tableData)
+    // console.log(this.tableData);
     this.dataSource.data = this.tableData.data;
     this.columns = this.tableData.columns;
     this.displayedColumns = this.columns.map((x: { key: any; }) => x.key);
