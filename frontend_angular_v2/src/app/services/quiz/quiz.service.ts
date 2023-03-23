@@ -18,14 +18,7 @@ export class QuizService {
 
   /* for quiz - quiz, review, result & admin */
   addQuizDetails(quiz: Quiz){
-    /*
-    this.hc.post(this.quizServer, newQuiz).subscribe(
-      (response) => console.log(`send quiz: ${response}`),
-      (error) => console.log(error),
-      () => console.log("completed")
-    )
-    */
-    // console.log(quiz);
+    // this.hc.post(this.quizServer, newQuiz);
     this.fs.collection('quiz').add(quiz);
   }
 
@@ -40,24 +33,12 @@ export class QuizService {
   }
 
   updateQuizDetails(id: string, quiz: Quiz){
-    /*
-    this.hc.put<Quiz>(`${this.quizServer}/${id}`, quiz).subscribe(
-      (response) => console.log(`update quiz: ${response}`),
-      (error) => console.log(error),
-      () => console.log("completed")
-    )
-    */
+    // this.hc.put<Quiz>(`${this.quizServer}/${id}`, quiz);
    this.fs.collection('quiz').doc(id).update(quiz);
   }
 
   deleteQuizDetails(id: string){
-    /*
-    this.hc.delete(`${this.quizServer}/${id}`).subscribe(
-      (response) => console.log(response),
-      (error) => console.log(error),
-      () => console.log("completed")
-    )
-    */
+    // this.hc.delete(`${this.quizServer}/${id}`);
    this.fs.collection('quiz').doc(id).delete();
   }
 

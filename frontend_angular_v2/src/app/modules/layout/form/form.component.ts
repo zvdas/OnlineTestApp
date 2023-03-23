@@ -18,6 +18,8 @@ export class FormComponent implements OnInit {
 
   formTitles: string[] = [];
 
+  finalObject: any;
+
   constructor(@Inject(MAT_DIALOG_DATA) private data: {object: any, formTitles: any, formControlNames: any, inputFormGroup: any}) { }
 
   ngOnInit(): void {

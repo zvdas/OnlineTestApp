@@ -20,9 +20,10 @@ export class QuizMasterComponent implements OnInit {
   msg='';
 
   formInputData: any = {
-    formTitles: ['Question', 'Option A', 'Option B', 'Option C', 'Option D', 'Answer', 'Answer Index'],
-    formControlNames: ['question', 'optionA', 'optionB', 'optionC', 'optionD', 'answer', 'ansIndex'],
+    formTitles: ['ID', 'Question', 'Option A', 'Option B', 'Option C', 'Option D', 'Answer', 'Answer Index'],
+    formControlNames: ['id', 'question', 'optionA', 'optionB', 'optionC', 'optionD', 'answer', 'ansIndex'],
     inputFormGroup: new FormGroup({
+      id: new FormControl(''),
       question: new FormControl(''), 
       optionA: new FormControl(''), 
       optionB: new FormControl(''), 
@@ -39,12 +40,6 @@ export class QuizMasterComponent implements OnInit {
     columns: [
       {key: 'index', label: '#'},
       {key: 'question', label: 'Question'},
-      /*
-      {key: 'options[0]', label: 'Option A'},
-      {key: 'options[1]', label: 'Option B'},
-      {key: 'options[2]', label: 'Option C'},
-      {key: 'options[3]', label: 'Option D'},
-      */
       {key: 'optionA', label: 'Option A'},
       {key: 'optionB', label: 'Option B'},
       {key: 'optionC', label: 'Option C'},
@@ -64,23 +59,13 @@ export class QuizMasterComponent implements OnInit {
   }
   
   updateQuizForm(quizData: any) {
-    this.qs.addQuizDetails(quizData);
-      /*
-      {
-      id: '',
-      question: quizData['question'],
-      /*
-      options: [
-        quizData['optionA'],
-        quizData['optionB'],
-        quizData['optionC'],
-        quizData['optionD']
-      ],
-      optionA: 
-      answer: quizData['answer'],
-      ansIndex: quizData['ansIndex']
-    })
-    */
+    if(Object.keys(quizData).includes('id') && !quizData.id) {
+      this.qs.addQuizDetails(quizData);
+    } else if(!Object.keys(quizData).includes('id')) {
+      this.qs.deleteQuizDetails(quizData);
+    } else {
+      this.qs.updateQuizDetails(quizData.id, quizData);
+    }
   }
   
   getQuizList() {
@@ -91,7 +76,6 @@ export class QuizMasterComponent implements OnInit {
           this.quizList.push({
             id: item.payload.doc.id,
             question: JSON.parse(JSON.stringify(item.payload.doc.data())).question,
-            // options: JSON.parse(JSON.stringify(item.payload.doc.data())).options,
             optionA: JSON.parse(JSON.stringify(item.payload.doc.data())).optionA,
             optionB: JSON.parse(JSON.stringify(item.payload.doc.data())).optionB,
             optionC: JSON.parse(JSON.stringify(item.payload.doc.data())).optionC,
@@ -107,58 +91,5 @@ export class QuizMasterComponent implements OnInit {
         */
       })
   }
-
-  /*
-  getTableData() {
-    console.log(this.quizList);
-    this.tableData = {
-      data: this.quizList,
-      columns: [
-        {key: 'index', label: '#'},
-        {key: 'question', label: 'Question'},
-        {key: 'options[0]', label: 'Option A'},
-        {key: 'options[1]', label: 'Option B'},
-        {key: 'options[2]', label: 'Option C'},
-        {key: 'options[3]', label: 'Option D'},
-        {key: 'answer', label: 'Answer'},
-        {key: 'ansIndex', label: 'Answer Index'},
-        {key: 'action', label: 'Action'},
-      ]
-    };
-  }
-  */
-
-  /*
-  getQuizById(id: string){
-    this.qs.getQuizByID(id).subscribe(
-      // response => console.log(response),
-      response => {this.quiz = response.payload.data() as Quiz},
-      error => console.log(error),
-      () => console.log('completed')
-    )
-    // console.log(`get quiz: ${JSON.stringify(this.quiz)} id: ${id}`)
-  }
-  
-  addQuiz(){
-    // console.log(`add  quiz: ${JSON.stringify(this.quiz)}`)
-    this.qs.addQuizDetails(this.quiz);
-    this.msg = "Quiz added successfully.";
-  }
-  
-  updateQuiz(){
-    console.log(`update quiz: ${this.quiz}`)
-    this.qs.updateQuizDetails(this.quiz.id, this.quiz);
-    this.msg = "Quiz updated successfully.";
-  }
-  
-  deleteQuiz(id: string){
-    this.qs.deleteQuizDetails(id);
-    this.msg = "Quiz deleted successfully.";
-  }
-  
-  goToUserMaster(){
-    this.router.navigate(['/userMaster'])
-  }
-  */
 
 }

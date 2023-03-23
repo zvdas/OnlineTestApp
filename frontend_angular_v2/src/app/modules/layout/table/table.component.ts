@@ -4,13 +4,6 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
@@ -93,7 +86,7 @@ export class TableComponent implements OnInit, AfterViewInit {
   }
 
   deleteSelected(id: string) {
-
+    this.formDataEvent.emit(id);
   }
 
 }
