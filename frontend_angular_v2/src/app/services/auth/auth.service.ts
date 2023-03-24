@@ -29,7 +29,7 @@ export class AuthService {
     this.as
       .signInWithEmailAndPassword(email, password)
       .then(creds => localStorage.setItem('user', JSON.stringify(creds.user)))
-      .then(() => this.router.navigate(['/layout/dashboard']));
+      .then(() => this.router.navigate(['/quiz/master']));
   }
 
   forgotPassword(resetEmail: string) {

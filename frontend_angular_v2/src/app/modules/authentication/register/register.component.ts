@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserService } from 'src/app/services/user/user.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -10,29 +10,33 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 
 export class RegisterComponent implements OnInit {
+  /*
   msg='';
 
   registerForm = new FormGroup({
-    full_name: new FormControl('', [Validators.required]),
-    username: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required]),
-    isAdmin: new FormControl(false),
   });
 
-  constructor(private us: UserService, private router: Router) { }
+  constructor(private as: AuthService, private router: Router) { }
+  */
+
+  slide: string = '';
 
   ngOnInit(): void {
+    document.body.style.backgroundColor='Chocolate';
   }
 
+  /*
   onClickRegister(){
     console.log(this.registerForm.value);
-    this.us.sendUserDetails(this.registerForm.value);
+    this.as.registerNewUser(this.registerForm.value.email, this.registerForm.value.password);
     this.msg = "User registered successfully. Please login to continue.";
   }
 
   goToLogin(){
     this.router.navigate(['/login'])
   }
+  */
 
 }

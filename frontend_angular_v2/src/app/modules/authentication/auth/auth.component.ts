@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { Auth } from 'src/app/models/auth';
+import { Component, Input } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-auth',
@@ -8,5 +9,35 @@ import { Auth } from 'src/app/models/auth';
 })
 
 export class AuthComponent {
-  user: Auth = JSON.parse(localStorage.getItem('user')!);
+  msg='';
+  @Input() slide: string = '';
+
+  authForm = new FormGroup({
+    uname: new FormControl('', [Validators.required]),
+    pword: new FormControl('', [Validators.required]),
+  });
+  
+  constructor(private as: AuthService) { }
+
+  ngOnInit(): void {
+    document.body.style.backgroundColor='CornflowerBlue';
+  }
+
+  onClickSubmit() {
+    console.log(this.slide);
+    if(this.slide === 'login') {
+      this.as.loginRegisteredUser(this.authForm.controls['uname'].value, this.authForm.controls['pword'].value);
+    } else if (this.slide === 'register') {
+      this.as.registerNewUser(this.authForm.controls['uname'].value, this.authForm.controls['pword'].value);
+    }
+  }
+
+  goToRegister() {
+    this.slide = 'register';
+  }
+
+  goToLogin() {
+    this.slide = 'login';
+  }
+  
 }

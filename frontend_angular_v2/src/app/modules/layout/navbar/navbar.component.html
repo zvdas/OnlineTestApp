@@ -1,30 +1,56 @@
 <nav class="navbar navbar-expand-lg bg-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">OTA</a>
-        
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-        </ul>
-        
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-                <span class="nav-link">{{currentUser.email}}</span>
-            </li>
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">OTA</a>
 
-            <li class="nav-item">
-                <span class="nav-link">{{currentDate|date:"longDate"}}</span>
-            </li>
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="#">Home</a>
+      </li>
 
-            <li class="nav-item">
-                <span class="nav-link">{{currentDate|date:"mediumTime"}}</span>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Quiz
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a class="dropdown-item" href="/quiz/master">Quiz Master</a>
             </li>
-            
-            <li class="nav-item">
-                <a class="nav-link" (click)="Logout()">Logout</a>
-            </li>
-        </ul>
+            <li><hr class="dropdown-divider" /></li>
+            <li><a class="dropdown-item" href="/quiz">Quiz Display</a></li>
+          </ul>
+        </li>
+      </div>
 
-    </div>
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="/user">
+          User Master
+        </a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+      <li class="nav-item">
+        <span class="nav-link">{{ currentUser.email }}</span>
+      </li>
+
+      <li class="nav-item">
+        <span class="nav-link">{{ currentDate | date : "longDate" }}</span>
+      </li>
+
+      <li class="nav-item">
+        <span class="nav-link">{{ currentDate | date : "mediumTime" }}</span>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" (click)="Logout()">Logout</a>
+      </li>
+    </ul>
+  </div>
 </nav>

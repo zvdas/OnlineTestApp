@@ -1,6 +1,7 @@
-<div class='inventory-body'>
-    <div align='center' class='container'>
-        <div class='card col-8 m-3 p-3'>
+<app-auth [slide]="'login'"></app-auth>
+<!-- <div class="d-flex flex-column min-vh-100 min-vw-100">
+    <div class="d-flex flex-grow-1 justify-content-center align-items-center">
+        <div align="center" class='card col-8 m-5 p-5'>
             <div class='card-body text-center'>
                 <h1>HTML Quiz</h1>
                 <h2>Are You Ready?</h2>
@@ -8,7 +9,7 @@
             </div>
 
             <div class='row'>
-                <form [formGroup]='loginForm' (ngSubmit)='onClickLogin()'>
+                <form [formGroup]='loginForm' (ngSubmit)='onClickSubmit()'>
                     <div class='row mb-3 align-items-center'>
                         <div class='col-3'>
                             <label for='uname' class='form-label'>Username</label>
@@ -27,14 +28,13 @@
                         </div>
                     </div>
                     <div class='row mb-3 justify-content-center'>{{msg}}</div>
-                    <button type='submit' class='btn btn-primary' [disabled]='loginForm.invalid'>Submit</button>
+                    <button type='submit' class='btn btn-primary col-4' [disabled]='loginForm.invalid'>Submit</button>
                 </form>
             </div>
         
             <div class='row'>
-                <!-- (click)='goToRegister()' -->
-                <h5>New User? click <a class='blue-text' href='/auth/register'>here</a> to register</h5>
+                <h5>New User? Click <a class='blue-text' href='/auth/register'>here</a> to register or <a href="/home">here</a> to return home</h5>
             </div>
         </div>
     </div>
-</div>
+</div> -->

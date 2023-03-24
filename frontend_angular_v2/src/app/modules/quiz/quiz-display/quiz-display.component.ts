@@ -20,9 +20,10 @@ export class QuizDisplayComponent implements OnInit {
   constructor(private qs: QuizService, private as:AnswersService, private router: Router) { }
 
   ngOnInit(): void {
-    this.getQuiz();
+    // this.getQuiz();
   }
   
+  /*
   getQuiz() {
     this.qs.getQuizDetails().subscribe(
       // response => console.log(response),
@@ -33,8 +34,7 @@ export class QuizDisplayComponent implements OnInit {
   }
 
   onSubmit(quizForm:NgForm){
-    /*check below for difference between options array and optionA-D */
-    /*
+    // check below for difference between options array and optionA-D 
     if(quizForm.value.selectedOption[0] === this.quiz[this.currentIndex].options[this.quiz[this.currentIndex].ansIndex]){
       this.as.createAnswerDetails({
         "selectedOption": quizForm.value.selectedOption[0],
@@ -47,11 +47,12 @@ export class QuizDisplayComponent implements OnInit {
         "answerStatus": "Incorrect",
         "answerScore": 0
       })
-    };*/
+    };
   }
 
   finishQuiz(){
     this.router.navigate(['/result']);
   }
+  */
 
 }

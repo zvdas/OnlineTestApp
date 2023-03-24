@@ -1,7 +1,46 @@
-<div *ngIf="!user">
-    <app-login></app-login>
-</div>
-<div *ngIf="user">
-    <app-navbar></app-navbar>
-    <router-outlet></router-outlet>
+<div class="d-flex flex-column min-vh-100 min-vw-100">
+    <div class="d-flex flex-grow-1 justify-content-center align-items-center">
+        <div align="center" class='card col-8 m-5 p-5'>
+            <div class='card-body text-center'>
+                <h1>HTML Quiz</h1>
+                <h2>Are You Ready?</h2>
+                <h3 *ngIf="slide === 'login'">Login</h3>
+                <h3 *ngIf="slide === 'register'">Register</h3>
+            </div>
+
+            <div class='row'>
+                <form [formGroup]='authForm' (ngSubmit)='onClickSubmit()'>
+                    <div class='row mb-3 align-items-center'>
+                        <div class='col-3'>
+                            <label for='uname' class='form-label'>Username</label>
+                        </div>
+                        <div class='col-8'>
+                            <input type='text' class='form-control' formControlName='uname'/>
+                        </div>
+                    </div>
+                    <div class='row mb-3 align-items-center'>
+                        <div class='col-3'>
+                            <label for='pword' class='form-label'>Password</label>
+                        </div>
+                        <div class='col-8'>
+                            <input type='password' class='form-control' formControlName='pword'>
+                            <span class='form-text'>Must be 8-20 characters long.</span>
+                        </div>
+                    </div>
+                    <div class='row mb-3 justify-content-center'>{{msg}}</div>
+                    <button type='submit' class='btn btn-primary col-4' [disabled]='authForm.invalid'>Submit</button>
+                </form>
+            </div>
+        
+            <div *ngIf="slide === 'login'" class='row'>
+                <!-- (click)="goToRegister()" -->
+                <h5>New User? Click <a href='/auth/register'>here</a> to register or <a href="/home">here</a> to return home</h5>
+            </div>
+            
+            <div *ngIf="slide === 'register'" class='row'>
+                <!-- (click)="goToLogin()" -->
+                <h5>Already registered? Click <a href='/auth/login'>here</a> to login or <a href="/home">here</a> to return home</h5>
+            </div>
+        </div>
+    </div>
 </div>

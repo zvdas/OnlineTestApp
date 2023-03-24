@@ -17,8 +17,8 @@ import { LayoutModule } from '../layout/layout.module';
   imports: [
     CommonModule,
     QuizRoutingModule,
-    FormsModule,
-    MatListModule,
+    // FormsModule,
+    // MatListModule,
     MatIconModule,
     LayoutModule,
   ]

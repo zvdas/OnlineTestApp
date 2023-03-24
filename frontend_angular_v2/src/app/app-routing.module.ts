@@ -1,18 +1,16 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AppComponent } from './app.component';
 import { AuthGuard } from './guards/auth/auth.guard';
 import { RouteProtectionGuard } from './guards/route-protection/route-protection.guard';
 import { ErrorComponent } from './modules/layout/error/error.component';
+import { HomeComponent } from './modules/layout/home/home.component';
 
 const routes: Routes = [
-  /*
   {
-    path: '',
-    component: AppComponent,
-  },
-  */
+    path: 'home',
+    component: HomeComponent,
+  },  
   /* Lazy Load Modules */
   {
     path: 'auth',
@@ -41,31 +39,13 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'user',
-    loadChildren: () =>
-      import('./modules/user/user.module').then((m) => m.UserModule),
-    canActivate: [AuthGuard],
-  },
-  // /*
-  {
     path: '',
-    // redirectTo: '/dashboard',
-    redirectTo: '/auth/login',
+    redirectTo: '/home',
     pathMatch: 'full',
   },
-  // */
-  // /*
-  {
-    path: 'layout',
-    loadChildren: () =>
-      import('./modules/layout/layout.module').then((m) => m.LayoutModule),
-  },
-  // */
   {
     path: '**',
-    loadChildren: () =>
-      import('./modules/layout/layout.module').then((m) => m.LayoutModule),
-    // component: ErrorComponent,
+    component: ErrorComponent,
   },
 ];
 

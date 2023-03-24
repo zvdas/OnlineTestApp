@@ -1,3 +1,5 @@
+<app-auth [slide]="'register'"></app-auth>
+<!-- 
 <div class='inventory-body'>
     <div align='center' class='container'>
         <div class='card col-8 m-3 p-3'>
@@ -11,28 +13,10 @@
                 <form [formGroup]='registerForm' (ngSubmit)='onClickRegister()'>
                     <div class='row mb-3 align-items-center'>
                         <div class='col-3'>
-                            <label for='fullname' class='form-label'>Full Name</label>
-                        </div>
-                        <div class='col-8'>
-                            <input type='text' class='form-control' formControlName='fullname'/>
-                        </div>
-                    </div>
-
-                    <div class='row mb-3 align-items-center'>
-                        <div class='col-3'>
                             <label for='email' class='form-label'>Email</label>
                         </div>
                         <div class='col-8'>
                             <input type='text' class='form-control' formControlName='email'/>
-                        </div>
-                    </div>
-
-                    <div class='row mb-3 align-items-center'>
-                        <div class='col-3'>
-                            <label for='username' class='form-label'>Username</label>
-                        </div>
-                        <div class='col-8'>
-                            <input type='text' class='form-control' formControlName='username'/>
                         </div>
                     </div>
 
@@ -52,7 +36,7 @@
                         <div class='col-auto'>
                             <input type='checkbox' class='form-check-input' formControlName='isAdmin'/>
                         </div>
-                    </div>
+                    </div> 
 
                     <div class='row mb-3 justify-content-center'>{{msg}}</div>
 
@@ -60,10 +44,10 @@
                 </form>
 
                 <div class='row'>
-                    <!-- (click)='goToLogin()' -->
-                    <h5>If already registered, click <a class='blue-text' href='/auth/login'>here</a> to login</h5>
+                    <h5>If already registered, click <a class='blue-text' href='/auth/login' (click)='goToLogin()'>here</a> to login</h5>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</div> 
+-->
