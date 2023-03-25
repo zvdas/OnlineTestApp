@@ -5,6 +5,7 @@
                 <h1>HTML Quiz</h1>
                 <h2>Are You Ready?</h2>
                 <h3 *ngIf="slide === 'login'">Login</h3>
+                <h5 *ngIf="slide === 'login'">A default admin account has been created for demonstration purposes with username <b>admin@gmail.com</b> and password <b>admin12345</b></h5>
                 <h3 *ngIf="slide === 'register'">Register</h3>
             </div>
 
@@ -31,14 +32,13 @@
                     <button type='submit' class='btn btn-primary col-4' [disabled]='authForm.invalid'>Submit</button>
                 </form>
             </div>
-        
+
             <div *ngIf="slide === 'login'" class='row'>
-                <!-- (click)="goToRegister()" -->
-                <h5>New User? Click <a href='/auth/register'>here</a> to register or <a href="/home">here</a> to return home</h5>
+                <!-- <h5>New User? Click <a href='/auth/register'>here</a> to register or <a href="/home">here</a> to return home</h5> -->
+                <h5>Click <a href="/home">here</a> to return home</h5>
             </div>
-            
+
             <div *ngIf="slide === 'register'" class='row'>
-                <!-- (click)="goToLogin()" -->
                 <h5>Already registered? Click <a href='/auth/login'>here</a> to login or <a href="/home">here</a> to return home</h5>
             </div>
         </div>

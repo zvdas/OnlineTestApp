@@ -10,17 +10,22 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 
 export class AuthComponent {
   msg='';
+
   @Input() slide: string = '';
 
   authForm = new FormGroup({
     uname: new FormControl('', [Validators.required]),
     pword: new FormControl('', [Validators.required]),
   });
-  
+
   constructor(private as: AuthService) { }
 
   ngOnInit(): void {
-    document.body.style.backgroundColor='CornflowerBlue';
+    if(this.slide === 'login') {
+      document.body.style.backgroundColor='CornflowerBlue';
+    } else {
+      document.body.style.backgroundColor='Chocolate';
+    }
   }
 
   onClickSubmit() {
@@ -32,12 +37,4 @@ export class AuthComponent {
     }
   }
 
-  goToRegister() {
-    this.slide = 'register';
-  }
-
-  goToLogin() {
-    this.slide = 'login';
-  }
-  
 }
