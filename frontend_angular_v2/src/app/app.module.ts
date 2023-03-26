@@ -1,10 +1,7 @@
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import { MatListModule } from '@angular/material/list';
-import { MatIconModule } from '@angular/material/icon';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
@@ -14,14 +11,13 @@ import { AppComponent } from './app.component';
 import { environment } from 'src/environments/environment';
 import { AuthenticationModule } from './modules/authentication/authentication.module';
 import { QuizService } from './services/quiz/quiz.service';
-import { AnswersService } from './services/answers/answers.service';
+import { UserService } from './services/user/user.service';
 import { QuizModule } from './modules/quiz/quiz.module';
 import { ResultModule } from './modules/result/result.module';
 import { ReviewModule } from './modules/review/review.module';
 import { LayoutModule } from './modules/layout/layout.module';
 import { StringToNumberPipe } from './pipes/string-to-number.pipe';
 import { AuthGuard } from './guards/auth/auth.guard';
-import { RouteProtectionGuard } from './guards/route-protection/route-protection.guard';
 
 @NgModule({
   declarations: [AppComponent, StringToNumberPipe],
@@ -35,15 +31,11 @@ import { RouteProtectionGuard } from './guards/route-protection/route-protection
     ResultModule,
     ReviewModule,
     HttpClientModule,
-    // FormsModule,
-    // ReactiveFormsModule,
-    // MatListModule,
-    // MatIconModule,
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
   ],
-  providers: [QuizService, AnswersService, AuthGuard, RouteProtectionGuard],
+  providers: [QuizService, UserService, AuthGuard],
   bootstrap: [AppComponent],
 })
 

@@ -4,6 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 
 import { ResultRoutingModule } from './result-routing.module';
 import { QuizResultComponent } from './quiz-result/quiz-result.component';
+import { LayoutModule } from '../layout/layout.module';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import { QuizResultComponent } from './quiz-result/quiz-result.component';
   imports: [
     CommonModule,
     ResultRoutingModule,
-    MatIconModule
+    LayoutModule,
+    MatIconModule,
   ]
 })
 

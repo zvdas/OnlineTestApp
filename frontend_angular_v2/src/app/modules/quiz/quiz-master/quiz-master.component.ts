@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
 
 import { Quiz } from 'src/app/models/quiz';
 import { QuizService } from 'src/app/services/quiz/quiz.service';
@@ -13,23 +12,21 @@ import { FormComponent } from '../../layout/form/form.component';
 })
 
 export class QuizMasterComponent implements OnInit {
-
   quiz: Quiz = {} as Quiz;
-  quizList: Quiz[] = []; 
+  quizList: Quiz[] = [];
   isLoaded: boolean = false;
-  msg='';
 
   formInputData: any = {
     formTitles: ['ID', 'Question', 'Option A', 'Option B', 'Option C', 'Option D', 'Answer', 'Answer Index'],
     formControlNames: ['id', 'question', 'optionA', 'optionB', 'optionC', 'optionD', 'answer', 'ansIndex'],
     inputFormGroup: new FormGroup({
       id: new FormControl(''),
-      question: new FormControl(''), 
-      optionA: new FormControl(''), 
-      optionB: new FormControl(''), 
-      optionC: new FormControl(''), 
-      optionD: new FormControl(''), 
-      answer: new FormControl(''), 
+      question: new FormControl(''),
+      optionA: new FormControl(''),
+      optionB: new FormControl(''),
+      optionC: new FormControl(''),
+      optionD: new FormControl(''),
+      answer: new FormControl(''),
       ansIndex: new FormControl('')
     }),
     component: FormComponent
@@ -50,14 +47,14 @@ export class QuizMasterComponent implements OnInit {
     ]
   };
 
-  constructor(private qs: QuizService, private router: Router) { }
-  
+  constructor(private qs: QuizService) { }
+
   ngOnInit(): void {
     document.body.style.backgroundColor = 'DarkCyan';
     // document.body.style.backgroundImage = 'linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%)';
     this.getQuizList();
   }
-  
+
   updateQuizForm(quizData: any) {
     if(Object.keys(quizData).includes('id') && !quizData.id) {
       this.qs.addQuizDetails(quizData);
@@ -67,7 +64,7 @@ export class QuizMasterComponent implements OnInit {
       this.qs.updateQuizDetails(quizData.id, quizData);
     }
   }
-  
+
   getQuizList() {
     this.qs
       .getQuizDetails()
@@ -82,14 +79,14 @@ export class QuizMasterComponent implements OnInit {
             optionD: JSON.parse(JSON.stringify(item.payload.doc.data())).optionD,
             answer: JSON.parse(JSON.stringify(item.payload.doc.data())).answer,
             ansIndex: JSON.parse(JSON.stringify(item.payload.doc.data())).ansIndex
-          } as Quiz)
+          } as Quiz);
           this.isLoaded = true;
-        })
+        });
         /*
         this.quizList = res.map(item=>item.payload.doc.data() as Quiz);
         this.isLoaded = true;
         */
-      })
+      });
   }
 
 }

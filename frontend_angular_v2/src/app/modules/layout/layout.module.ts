@@ -12,6 +12,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { FormComponent } from './form/form.component';
 import { TableComponent } from './table/table.component';
 import { HomeComponent } from './home/home.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { HomeComponent } from './home/home.component';
     HomeComponent,
     NavbarComponent,
     TableComponent,
+    DashboardComponent,
   ],
   imports: [
     CommonModule,

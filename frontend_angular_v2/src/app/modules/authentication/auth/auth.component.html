@@ -1,45 +1,53 @@
-<div class="d-flex flex-column min-vh-100 min-vw-100">
-    <div class="d-flex flex-grow-1 justify-content-center align-items-center">
-        <div align="center" class='card col-8 m-5 p-5'>
+<div class='d-flex flex-column min-vh-100 min-vw-100'>
+    <div class='d-flex flex-grow-1 justify-content-center align-items-center'>
+        <div align='center' class='card col-8 m-5 p-5'>
             <div class='card-body text-center'>
                 <h1>HTML Quiz</h1>
                 <h2>Are You Ready?</h2>
                 <h3 *ngIf="slide === 'login'">Login</h3>
                 <h5 *ngIf="slide === 'login'">A default admin account has been created for demonstration purposes with username <b>admin@gmail.com</b> and password <b>admin12345</b></h5>
                 <h3 *ngIf="slide === 'register'">Register</h3>
+                <h3 *ngIf="slide === 'enroll'">Enroll</h3>
             </div>
 
             <div class='row'>
                 <form [formGroup]='authForm' (ngSubmit)='onClickSubmit()'>
                     <div class='row mb-3 align-items-center'>
                         <div class='col-3'>
-                            <label for='uname' class='form-label'>Username</label>
+                            <label for='uname' class='form-label' *ngIf="!(slide === 'login'||'register')">Username</label>
+                            <label for='uname' class='form-label' *ngIf="slide === 'enroll'">Full Name</label>
                         </div>
                         <div class='col-8'>
-                            <input type='text' class='form-control' formControlName='uname'/>
+                            <input type='text' class='form-control' formControlName='uname' *ngIf="!(slide === 'login'||'register')"/>
+                            <input type='text' class='form-control' formControlName='full_name' *ngIf="slide === 'enroll'"/>
                         </div>
                     </div>
                     <div class='row mb-3 align-items-center'>
                         <div class='col-3'>
-                            <label for='pword' class='form-label'>Password</label>
+                            <label for='pword' class='form-label' *ngIf="!(slide === 'login'||'register')">Password</label>
+                            <label for='pword' class='form-label' *ngIf="slide === 'enroll'">Email</label>
                         </div>
-                        <div class='col-8'>
+                        <div class='col-8' *ngIf="!(slide === 'login'||'register')">
                             <input type='password' class='form-control' formControlName='pword'>
                             <span class='form-text'>Must be 8-20 characters long.</span>
                         </div>
+                        <div class='col-8' *ngIf="slide === 'enroll'">
+                            <input type='email' class='form-control' formControlName='email'>
+                        </div>
                     </div>
                     <div class='row mb-3 justify-content-center'>{{msg}}</div>
-                    <button type='submit' class='btn btn-primary col-4' [disabled]='authForm.invalid'>Submit</button>
+                    <button type='submit' class='btn btn-primary col-4'  *ngIf="!(slide === 'login'||'register')" [disabled]='authForm.invalid'>Submit</button>
+                    <button type='submit' class='btn btn-primary col-4'  *ngIf="slide === 'enroll'" [disabled]='authForm.invalid'>Proceed to Quiz</button>
                 </form>
             </div>
 
             <div *ngIf="slide === 'login'" class='row'>
-                <!-- <h5>New User? Click <a href='/auth/register'>here</a> to register or <a href="/home">here</a> to return home</h5> -->
-                <h5>Click <a href="/home">here</a> to return home</h5>
+                <!-- <h5>New User? Click <a href='/auth/register'>here</a> to register or <a href='/home'>here</a> to return home</h5> -->
+                <h5>Click <a href='/home'>here</a> to return home</h5>
             </div>
 
             <div *ngIf="slide === 'register'" class='row'>
-                <h5>Already registered? Click <a href='/auth/login'>here</a> to login or <a href="/home">here</a> to return home</h5>
+                <h5>Already registered? Click <a href='/auth/login'>here</a> to login or <a href='/home'>here</a> to return home</h5>
             </div>
         </div>
     </div>

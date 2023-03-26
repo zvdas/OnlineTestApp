@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Answers } from 'src/app/models/answers';
 import { Quiz } from 'src/app/models/quiz';
-import { AnswersService } from 'src/app/services/answers/answers.service';
 import { QuizService } from 'src/app/services/quiz/quiz.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-quiz-display',
@@ -15,30 +16,60 @@ export class QuizDisplayComponent implements OnInit {
 
   quiz: Quiz[] = [];
   currentIndex: number = 0;
-  endIndex: number = Object.values(this.quiz).length;
+  endIndex: number = 0;
+  answer: Answers[] = [];
+  quizForm = new FormControl('');
 
-  constructor(private qs: QuizService, private as:AnswersService, private router: Router) { }
+  constructor(private qs: QuizService, private us:UserService, private router: Router) { }
 
   ngOnInit(): void {
-    // this.getQuiz();
+    document.body.style.backgroundColor='SlateBlue';
+    this.getQuiz();
   }
-  
-  /*
+
   getQuiz() {
     this.qs.getQuizDetails().subscribe(
       // response => console.log(response),
-      response => {this.quiz = response.map(res=>res.payload.doc.data() as Quiz)},
+      response => {
+        this.quiz = response.map(res=>res.payload.doc.data() as Quiz);
+        this.endIndex = this.quiz.length;
+        // Object.values(this.quiz).length;
+      },
       error => console.log(error),
       () => console.log('completed')
     )
   }
 
-  onSubmit(quizForm:NgForm){
-    // check below for difference between options array and optionA-D 
+  gradeQuiz(quizForm: any) {
+    if(quizForm[0] === this.quiz[this.currentIndex].answer) {
+      // this.as.createAnswerDetails({
+      this.answer.push({
+        selectedOption: quizForm[0],
+        answerStatus: 'correct',
+        answerScore: 1
+      });
+    } else {
+      // this.as.createAnswerDetails({
+      this.answer.push({
+        selectedOption: quizForm[0],
+        answerStatus: 'incorrect',
+        answerScore: 0
+      });
+    };
+  }
+
+  onSubmit(quizForm: any){
+    this.gradeQuiz(quizForm);
+
+    if(this.currentIndex<this.endIndex-1) {
+      this.currentIndex += 1;
+    }
+    // check below for difference between options array and optionA-D
+    /*
     if(quizForm.value.selectedOption[0] === this.quiz[this.currentIndex].options[this.quiz[this.currentIndex].ansIndex]){
       this.as.createAnswerDetails({
         "selectedOption": quizForm.value.selectedOption[0],
-        "answerStatus":"Correct", 
+        "answerStatus":"Correct",
         "answerScore":1
       })
     }else{
@@ -48,11 +79,14 @@ export class QuizDisplayComponent implements OnInit {
         "answerScore": 0
       })
     };
+    */
   }
 
-  finishQuiz(){
+  finishQuiz(quizForm: any){
+    this.gradeQuiz(quizForm);
+    console.log(this.answer);
+    // this.as.createAnswerDetails(this.answer);
     this.router.navigate(['/result']);
   }
-  */
 
 }

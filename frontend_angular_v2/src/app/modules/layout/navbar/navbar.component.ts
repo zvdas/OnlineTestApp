@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Auth } from 'src/app/models/auth';
+import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
@@ -10,19 +11,31 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 })
 
 export class NavbarComponent implements OnInit {
-  
-  currentUser: Auth = {} as Auth;
+
+  @Input() isLoggedIn!: boolean;
+
+  currentUser: Auth | User = {} as Auth | User;
 
   currentDate = new Date();
 
   constructor(private as: AuthService, private router: Router) { }
 
   ngOnInit(): void {
-    this.currentUser = JSON.parse(localStorage.getItem('user')!)['providerData'][0];
+    if(!this.isLoggedIn) {
+      console.log(JSON.parse(localStorage.getItem('currentUser')!)[0]);
+      this.currentUser = JSON.parse(localStorage.getItem('currentUser')!)[0];
+    } else {
+      this.currentUser = JSON.parse(localStorage.getItem('user')!)['providerData'][0];
+    };
   }
-  
+
   Logout() {
-    this.as.logOutUser();
+    if(!this.isLoggedIn) {
+      localStorage.removeItem('currentUser');
+      this.router.navigateByUrl('/home');
+    } else {
+      this.as.logOutUser();
+    }
   }
 
 }

@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Answers } from 'src/app/models/answers';
 import { Quiz } from 'src/app/models/quiz';
-import { AnswersService } from 'src/app/services/answers/answers.service';
 import { QuizService } from 'src/app/services/quiz/quiz.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-quiz-result',
@@ -13,16 +13,16 @@ import { QuizService } from 'src/app/services/quiz/quiz.service';
 
 export class QuizResultComponent implements OnInit {
 
-  quiz: Quiz[] = []; 
+  quiz: Quiz[] = [];
   answers: Answers[] = [];
   currentIndex: number = 0;
   endIndex: number = this.quiz.length;
 
-  constructor(private qs: QuizService, private as: AnswersService, private router: Router) { }
+  constructor(private qs: QuizService, private us: UserService, private router: Router) { }
 
   ngOnInit(): void {
     this.getQuestions();
-    this.getAnswers();
+    this.getUserAnswers(JSON.parse(JSON.parse(JSON.stringify(localStorage.getItem('currentUser')))).id);
   }
 
   getQuestions() {
@@ -33,11 +33,14 @@ export class QuizResultComponent implements OnInit {
       () => console.log("completed")
     )
   }
-  
-  getAnswers() {
-    this.as.getAnswerDetails().subscribe(
-      response => {this.answers = response.map(res=>res.payload.doc.data() as Answers)},
+
+  getUserAnswers(id: string) {
+    this.us.getUserById(id).subscribe(
       // response => console.log(response),
+      response => {
+        this.answers = JSON.parse(JSON.stringify(response.payload.data())).answers as Answers[]
+        // console.log(JSON.parse(JSON.stringify(response.payload.data())).answers);
+      },
       error => console.log(error),
       () => console.log("completed")
     )

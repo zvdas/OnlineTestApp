@@ -1,2 +1,2 @@
-<app-navbar></app-navbar>
+<app-navbar [isLoggedIn]='true'></app-navbar>
 <app-table *ngIf="isLoaded === true" [tableData]="tableData" [formInputData]="formInputData" (formDataEvent)="updateQuizForm($event)"></app-table>

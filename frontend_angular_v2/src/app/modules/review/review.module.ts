@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ReviewRoutingModule } from './review-routing.module';
 import { QuizReviewComponent } from './quiz-review/quiz-review.component';
+import { LayoutModule } from '../layout/layout.module';
 
 @NgModule({
   declarations: [
@@ -10,7 +11,8 @@ import { QuizReviewComponent } from './quiz-review/quiz-review.component';
   ],
   imports: [
     CommonModule,
-    ReviewRoutingModule
+    ReviewRoutingModule,
+    LayoutModule,
   ]
 })
 

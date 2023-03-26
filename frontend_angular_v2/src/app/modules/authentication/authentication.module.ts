@@ -10,8 +10,8 @@ import { LayoutModule } from '../layout/layout.module';
 
 @NgModule({
   declarations: [
-    LoginComponent, 
-    RegisterComponent, 
+    LoginComponent,
+    RegisterComponent,
     AuthComponent
   ],
   imports: [
@@ -21,7 +21,8 @@ import { LayoutModule } from '../layout/layout.module';
     LayoutModule
   ],
   exports: [
-    LoginComponent
+    LoginComponent,
+    AuthComponent
   ]
 })
 

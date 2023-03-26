@@ -1,3 +1,4 @@
+<app-navbar [isLoggedIn]='false'></app-navbar>
 <div class="row">
     <div class="col s4 offset-s4">
         <div class="card white border border-blue-grey border-5">
@@ -19,7 +20,7 @@
                     <!-- check below for difference between options array and optionA-D -->
                     <!-- <p>Correct Answer: {{item.options[item.ansIndex]}}</p> -->
                 </div>
-                <div class="row" *ngFor="let item2 of answers.slice(currentIndex,currentIndex+1); let i = index" name="item2">    
+                <div class="row" *ngFor="let item2 of answers.slice(currentIndex,currentIndex+1); let i = index" name="item2">
                     <p>Your Answer: {{ item2.selectedOption }}</p><br>
                     <p>Your answer is {{ item2.answerStatus }}</p>
                 </div>
