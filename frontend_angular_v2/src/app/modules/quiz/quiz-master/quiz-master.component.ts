@@ -12,13 +12,15 @@ import { FormComponent } from '../../layout/form/form.component';
 })
 
 export class QuizMasterComponent implements OnInit {
+
   quiz: Quiz = {} as Quiz;
   quizList: Quiz[] = [];
   isLoaded: boolean = false;
 
   formInputData: any = {
-    formTitles: ['ID', 'Question', 'Option A', 'Option B', 'Option C', 'Option D', 'Answer', 'Answer Index'],
-    formControlNames: ['id', 'question', 'optionA', 'optionB', 'optionC', 'optionD', 'answer', 'ansIndex'],
+    mainTitle: 'Quiz',
+    formTitles: ['ID', 'Question', 'Option A', 'Option B', 'Option C', 'Option D', 'Answer', 'Action'],
+    formControlNames: ['id', 'question', 'optionA', 'optionB', 'optionC', 'optionD', 'answer', 'action'],
     inputFormGroup: new FormGroup({
       id: new FormControl(''),
       question: new FormControl(''),
@@ -27,21 +29,21 @@ export class QuizMasterComponent implements OnInit {
       optionC: new FormControl(''),
       optionD: new FormControl(''),
       answer: new FormControl(''),
-      ansIndex: new FormControl('')
     }),
     component: FormComponent
   };
 
   tableData: any = {
+    title: 'Quiz Questions',
     data: this.quizList,
     columns: [
+      {key: 'index', label: '#'},
       {key: 'question', label: 'Question'},
       {key: 'optionA', label: 'Option A'},
       {key: 'optionB', label: 'Option B'},
       {key: 'optionC', label: 'Option C'},
       {key: 'optionD', label: 'Option D'},
       {key: 'answer', label: 'Answer'},
-      {key: 'ansIndex', label: 'Answer Index'},
       {key: 'action', label: 'Action'},
     ]
   };
@@ -76,7 +78,6 @@ export class QuizMasterComponent implements OnInit {
             optionC: JSON.parse(JSON.stringify(item.payload.doc.data())).optionC,
             optionD: JSON.parse(JSON.stringify(item.payload.doc.data())).optionD,
             answer: JSON.parse(JSON.stringify(item.payload.doc.data())).answer,
-            ansIndex: JSON.parse(JSON.stringify(item.payload.doc.data())).ansIndex
           } as Quiz);
           this.isLoaded = true;
         });

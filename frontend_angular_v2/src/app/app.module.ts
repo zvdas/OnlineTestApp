@@ -18,6 +18,7 @@ import { ReviewModule } from './modules/review/review.module';
 import { LayoutModule } from './modules/layout/layout.module';
 import { StringToNumberPipe } from './pipes/string-to-number.pipe';
 import { AuthGuard } from './guards/auth/auth.guard';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [AppComponent, StringToNumberPipe],

@@ -14,20 +14,21 @@
                 <form [formGroup]='authForm' (ngSubmit)='onClickSubmit()'>
                     <div class='row mb-3 align-items-center'>
                         <div class='col-3'>
-                            <label for='uname' class='form-label' *ngIf="!(slide === 'login'||'register')">Username</label>
+                            <!-- <label for='uname' class='form-label' *ngIf="!(slide === 'login'||'register')">Username</label> -->
+                            <label for='uname' class='form-label' *ngIf="slide === 'login'">Username</label>
                             <label for='uname' class='form-label' *ngIf="slide === 'enroll'">Full Name</label>
                         </div>
                         <div class='col-8'>
-                            <input type='text' class='form-control' formControlName='uname' *ngIf="!(slide === 'login'||'register')"/>
+                            <input type='text' class='form-control' formControlName='uname' *ngIf="slide === 'login'"/>
                             <input type='text' class='form-control' formControlName='full_name' *ngIf="slide === 'enroll'"/>
                         </div>
                     </div>
                     <div class='row mb-3 align-items-center'>
                         <div class='col-3'>
-                            <label for='pword' class='form-label' *ngIf="!(slide === 'login'||'register')">Password</label>
+                            <label for='pword' class='form-label' *ngIf="slide === 'login'">Password</label>
                             <label for='pword' class='form-label' *ngIf="slide === 'enroll'">Email</label>
                         </div>
-                        <div class='col-8' *ngIf="!(slide === 'login'||'register')">
+                        <div class='col-8' *ngIf="slide === 'login'">
                             <input type='password' class='form-control' formControlName='pword'>
                             <span class='form-text'>Must be 8-20 characters long.</span>
                         </div>
@@ -36,7 +37,7 @@
                         </div>
                     </div>
                     <div class='row mb-3 justify-content-center'>{{msg}}</div>
-                    <button type='submit' class='btn btn-primary col-4'  *ngIf="!(slide === 'login'||'register')" [disabled]='authForm.invalid'>Submit</button>
+                    <button type='submit' class='btn btn-primary col-4'  *ngIf="slide === 'login'" [disabled]='authForm.invalid'>Submit</button>
                     <button type='submit' class='btn btn-primary col-4'  *ngIf="slide === 'enroll'" [disabled]='authForm.invalid'>Proceed to Quiz</button>
                 </form>
             </div>

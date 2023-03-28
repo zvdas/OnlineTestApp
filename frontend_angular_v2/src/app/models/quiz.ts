@@ -6,5 +6,4 @@ export interface Quiz {
     optionC: string;
     optionD: string;
     answer: string;
-    ansIndex: number;
 }

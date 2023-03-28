@@ -7,17 +7,16 @@ import { UserEnrollComponent } from './user-enroll/user-enroll.component';
 import { AuthenticationModule } from '../authentication/authentication.module';
 import { LayoutModule } from '../layout/layout.module';
 
-
 @NgModule({
   declarations: [
     UserMasterComponent,
-    UserEnrollComponent
+    UserEnrollComponent,
   ],
   imports: [
     CommonModule,
     UserRoutingModule,
     AuthenticationModule,
-    LayoutModule
+    LayoutModule,
   ]
 })
 

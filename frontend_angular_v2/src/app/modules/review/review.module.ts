@@ -4,17 +4,17 @@ import { CommonModule } from '@angular/common';
 import { ReviewRoutingModule } from './review-routing.module';
 import { QuizReviewComponent } from './quiz-review/quiz-review.component';
 import { LayoutModule } from '../layout/layout.module';
-import { MatIconModule } from '@angular/material/icon';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
-    QuizReviewComponent
+    QuizReviewComponent,
   ],
   imports: [
     CommonModule,
     ReviewRoutingModule,
     LayoutModule,
-    MatIconModule
+    SharedModule,
   ]
 })
 

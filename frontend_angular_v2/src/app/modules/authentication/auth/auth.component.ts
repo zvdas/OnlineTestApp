@@ -37,7 +37,6 @@ export class AuthComponent {
   }
 
   onClickSubmit() {
-    console.log(this.slide);
     if(this.slide === 'login') {
       this.as.loginRegisteredUser(this.authForm.controls['uname'].value, this.authForm.controls['pword'].value);
     } else if(this.slide === 'register') {
@@ -48,7 +47,6 @@ export class AuthComponent {
         .createNewUser(enrollObject)
         .then(res=>{enrollObject.id = res.id})
         .then(()=>localStorage.setItem('currentUser', JSON.stringify(enrollObject)))
-        .then(()=>console.log(localStorage.getItem('currentUser')))
         .finally(()=>this.router.navigateByUrl('/quiz'));
     }
   }

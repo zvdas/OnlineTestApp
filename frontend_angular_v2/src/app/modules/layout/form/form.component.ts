@@ -12,15 +12,12 @@ export class FormComponent implements OnInit {
 
   @Input() formInputData: any;
 
+  mainTitle: string = '';
+  formTitles: string[] = [];
+  formControlNames: string[] = [];
   inputFormGroup!: FormGroup;
 
-  formControlNames: string[] = [];
-
-  formTitles: string[] = [];
-
-  finalObject: any;
-
-  constructor(@Inject(MAT_DIALOG_DATA) private data: {object: any, formTitles: any, formControlNames: any, inputFormGroup: any}) { }
+  constructor(@Inject(MAT_DIALOG_DATA) private data: {object: any, mainTitle: string, formTitles: string[], formControlNames: string[], inputFormGroup: FormGroup}) { }
 
   ngOnInit(): void {
     this.getForm();
@@ -31,16 +28,13 @@ export class FormComponent implements OnInit {
 
   getForm() {
     this.formTitles = this.data.formTitles;
+    this.mainTitle = this.data.mainTitle;
     this.inputFormGroup = this.data.inputFormGroup;
     this.formControlNames = this.data.formControlNames;
   }
 
   patchFormValues() {
     this.inputFormGroup.patchValue(this.data.object);
-  }
-
-  submitForm() {
-    // console.log(this.inputFormGroup.value);
   }
 
 }

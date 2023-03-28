@@ -17,6 +17,7 @@ export class UserMasterComponent implements OnInit {
   isLoaded: boolean = false;
 
   formInputData: any = {
+    mainTitle: 'User',
     formTitles: ['ID', 'Full Name', 'Email'],
     formControlNames: ['id', 'full_name', 'email'],
     inputFormGroup: new FormGroup({
@@ -28,6 +29,7 @@ export class UserMasterComponent implements OnInit {
   };
 
   tableData: any = {
+    title: 'Users',
     data: this.userList,
     columns: [
       {key: 'index', label: '#'},
@@ -64,7 +66,7 @@ export class UserMasterComponent implements OnInit {
             id: item.payload.doc.id,
             full_name: JSON.parse(JSON.stringify(item.payload.doc.data())).full_name,
             email: JSON.parse(JSON.stringify(item.payload.doc.data())).email,
-            answers: JSON.parse(JSON.stringify(item.payload.doc.data())).answers,
+            answers: JSON.parse(JSON.stringify(item.payload.doc.data())).answers.length,
           } as User);
           this.isLoaded = true;
         });

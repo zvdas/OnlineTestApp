@@ -27,16 +27,12 @@ export class QuizResultComponent implements OnInit {
   getQuestions() {
     this.qs.getQuizDetails().subscribe(
       response =>  {this.quiz = response.map(res=>res.payload.doc.data() as Quiz)},
-      error => console.log(error),
-      () => console.log("completed")
     )
   }
 
   getUserAnswers(id: string) {
     this.us.getUserById(id).subscribe(
       response => {this.answers = JSON.parse(JSON.stringify(response.payload.data())).answers as Answers[]},
-      error => console.log(error),
-      () => console.log("completed")
     )
   }
 

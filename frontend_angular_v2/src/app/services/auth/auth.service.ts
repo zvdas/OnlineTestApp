@@ -22,14 +22,13 @@ export class AuthService {
   registerNewUser(email: string, password: string) {
     this.as
       .createUserWithEmailAndPassword(email, password)
-      .then(creds=>console.log(creds));
   }
 
   loginRegisteredUser(email: string, password: string) {
     this.as
       .signInWithEmailAndPassword(email, password)
       .then(creds => localStorage.setItem('user', JSON.stringify(creds.user)))
-      .then(() => this.router.navigate(['/quiz/master']));
+      .then(() => this.router.navigateByUrl('/quiz/master'));
   }
 
   forgotPassword(resetEmail: string) {

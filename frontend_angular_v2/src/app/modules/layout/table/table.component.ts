@@ -17,13 +17,10 @@ export class TableComponent implements OnInit, AfterViewInit {
   @Output() formDataEvent = new EventEmitter();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  
+
   data: any[] = [];
-
   columns: any;
-
   dataSource = new MatTableDataSource(this.data);
-  
   displayedColumns: any;
 
   constructor(private dialog: MatDialog) {}
@@ -31,14 +28,13 @@ export class TableComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.getTableNames();
   }
-  
+
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 
   getTableNames() {
-    // console.log(this.tableData);
     this.dataSource.data = this.tableData.data;
     this.columns = this.tableData.columns;
     this.displayedColumns = this.columns.map((x: { key: any; }) => x.key);
@@ -60,6 +56,7 @@ export class TableComponent implements OnInit, AfterViewInit {
       width: '50%',
       data: {
         object: {},
+        mainTitle: this.formInputData.mainTitle,
         formTitles: this.formInputData.formTitles,
         formControlNames: this.formInputData.formControlNames,
         inputFormGroup: this.formInputData.inputFormGroup

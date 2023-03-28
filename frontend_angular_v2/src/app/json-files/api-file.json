@@ -1,83 +1,83 @@
 {
   "user": [
     {
-      "fullname": "jessie eisenberg",
+      "full_name": "jessie eisenberg",
       "email": "jessberg@aol.com",
       "username": "jessberg",
       "password": "jessberg123",
-      "isAdmin": false,
+      "answers": [],
       "id": 1
     },
     {
-      "fullname": "Alicia Winters",
+      "full_name": "Alicia Winters",
       "email": "awinters@aol.com",
       "username": "awinters",
       "password": "awinters123",
-      "isAdmin": false,
+      "answers": [],
       "id": 2
     },
     {
-      "fullname": "Morticia Summers",
+      "full_name": "Morticia Summers",
       "email": "msummers@aol.com",
       "username": "msummers",
       "password": "msummers123",
-      "isAdmin": false,
+      "answers": [],
       "id": 3
     },
     {
-      "fullname": "Mark Thomas",
+      "full_name": "Mark Thomas",
       "email": "mthomas@aol.com",
       "username": "mthomas",
       "password": "mthomas123",
-      "isAdmin": false,
+      "answers": [],
       "id": 4
     },
     {
-      "fullname": "Thomas",
+      "full_name": "Thomas",
       "email": "Adkins",
       "username": "tadkins",
       "password": "tadkins123",
-      "isAdmin": true,
+      "answers": [],
       "id": 5
     },
     {
-      "fullname": "Tracy Jenkins",
+      "full_name": "Tracy Jenkins",
       "email": "tjenkins@aol.com",
       "username": "tjenkins",
       "password": "tjenkins123",
-      "isAdmin": false,
+      "answers": [],
       "id": 6
     },
     {
-      "fullname": "Charlene Mathis",
+      "full_name": "Charlene Mathis",
       "email": "cmathis@aol.in",
       "username": "cmathis",
       "password": "Mathis123",
-      "isAdmin": true,
+      "answers": [],
       "id": 7
     },
     {
-      "fullname": "Timothy Greene",
+      "full_name": "Timothy Greene",
       "email": "tgeene@aol.com",
       "username": "tgreene",
       "password": "tgreene123",
-      "isAdmin": true,
+      "answers": [],
       "id": 8
     },
     {
-      "fullname": "tester",
+      "full_name": "tester",
       "email": "tester",
       "username": "tester",
       "password": "tester",
-      "isAdmin": false,
+      "answers": [],
       "id": 9
     },
     {
-      "fullname": "tested",
+      "full_name": "tested",
       "email": "tested",
       "username": "tested",
       "password": "tested",
-      "isAdmin": true,
+      "answers": [],
       "id": 10
     }
   ],
@@ -85,123 +85,92 @@
     {
       "id": 1,
       "question": "HTML stands for?",
-      "options": [
-        "Hyper Text Markup Language",
-        "High Text Markup Language",
-        "Hyper Tabular Markup Language",
-        "None of these"
-      ],
-      "answer": "A",
-      "ansindex": 0
+      "optionA": "Hyper Text Markup Language",
+      "optionB": "High Text Markup Language",
+      "optionC": "Hyper Tabular Markup Language",
+      "optionD": "None of these",
+      "answer": "A"
     },
     {
       "id": 2,
       "question": "Which of the following tag is used to mark a beginning of paragraph ?",
-      "options": [
-        "<TD>",
-        "<br>",
-        "<P>",
-        "<TR>"
-      ],
-      "answer": "C",
-      "ansindex": 2
+      "optionA": "<TD>",
+      "optionB": "<br>",
+      "optionC": "<P>",
+      "optionD": "<TR>",
+      "answer": "C"
     },
     {
       "id": 3,
       "question": "From which tag descriptive list starts ?",
-      "options": [
-        "<LL>",
-        "<DD>",
-        "<DL>",
-        "<DS>"
-      ],
-      "answer": "C",
-      "ansindex": 2
+      "optionA": "<LL>",
+      "optionB": "<DD>",
+      "optionC": "<DL>",
+      "optionD": "<DS>",
+      "answer": "C"
     },
     {
       "id": 4,
       "question": "Correct HTML tag for the largest heading is",
-      "options": [
-        "<head>",
-        "<h6>",
-        "<heading>",
-        "<h1>"
-      ],
-      "answer": "D",
-      "ansindex": 3
+      "optionA": "<head>",
+      "optionB": "<h6>",
+      "optionC": "<heading>",
+      "optionD": "<h1>",
+      "answer": "D"
     },
     {
       "id": 5,
       "question": "The attribute of <form> tag",
-      "options": [
-        "Method",
-        "Action",
-        "Both (a)&(b)",
-        "None of these"
-      ],
-      "answer": "C",
-      "ansindex": 2
+      "optionA": "Method",
+      "optionB": "Action",
+      "optionC": "Both (a)&(b)",
+      "optionD": "None of these",
+      "answer": "C"
     },
     {
       "id": 6,
       "question": "Markup tags tell the web browser",
-      "options": [
-        "How to organise the page",
-        "How to display the page",
-        "How to display message box on page",
-        "None of these"
-      ],
-      "answer": "B",
-      "ansindex": 1
+      "optionA": "How to organise the page",
+      "optionB": "How to display the page",
+      "optionC": "How to display message box on page",
+      "optionD": "None of these",
+      "answer": "B"
     },
     {
       "id": 7,
       "question": "www is based on which model?",
-      "options": [
-        "Local-server",
-        "Client-server",
-        "3-tier",
-        "None of these"
-      ],
-      "answer": "B",
-      "ansindex": 1
+      "optionA": "Local-server",
+      "optionB": "Client-server",
+      "optionC": "3-tier",
+      "optionD": "None of these",
+      "answer": "B"
     },
     {
       "id": 8,
       "question": "What are Empty elements and is it valid?",
-      "options": [
-        "No, there is no such terms as Empty Element",
-        "Empty elements are element with no data",
-        "No, it is not valid to use Empty Element",
-        "None of these"
-      ],
-      "answer": "B",
-      "ansindex": 1
+      "optionA": "No, there is no such terms as Empty Element",
+      "optionB": "Empty elements are element with no data",
+      "optionC": "No, it is not valid to use Empty Element",
+      "optionD": "None of these",
+      "answer": "B"
     },
     {
       "id": 9,
       "question": "Which of the following attributes of text box control allow to limit the maximum character?",
-      "options": [
-        "size",
-        "len",
-        "maxlength",
-        "all of these"
-      ],
-      "answer": "C",
-      "ansindex": 2
+      "optionA": "size",
+      "optionB": "len",
+      "optionC": "maxlength",
+      "optionD": "all of these",
+      "answer": "C"
     },
     {
       "id": 10,
       "question": "Web pages starts with which of the following tag?",
-      "options": [
-        "<Body>",
-        "<Title>",
-        "<HTML>",
-        "<Form>"
-      ],
-      "answer": "C",
-      "ansindex": 2
+      "optionA": "<Body>",
+      "optionB": "<Title>",
+      "optionC": "<HTML>",
+      "optionD": "<Form>",
+      "answer": "C"
     }
-  ],
-  "answers": []
+  ]
 }
