@@ -29,11 +29,9 @@ export class QuizDisplayComponent implements OnInit {
 
   getQuiz() {
     this.qs.getQuizDetails().subscribe(
-      // response => console.log(response),
       response => {
         this.quiz = response.map(res=>res.payload.doc.data() as Quiz);
         this.endIndex = this.quiz.length;
-        // Object.values(this.quiz).length;
       },
       error => console.log(error),
       () => console.log('completed')
@@ -42,14 +40,12 @@ export class QuizDisplayComponent implements OnInit {
 
   gradeQuiz(quizForm: any) {
     if(quizForm[0] === this.quiz[this.currentIndex].answer) {
-      // this.as.createAnswerDetails({
       this.answers.push({
         selectedOption: quizForm[0],
         answerStatus: 'correct',
         answerScore: 1
       });
     } else {
-      // this.as.createAnswerDetails({
       this.answers.push({
         selectedOption: quizForm[0],
         answerStatus: 'incorrect',
@@ -66,22 +62,6 @@ export class QuizDisplayComponent implements OnInit {
     } else if (this.currentIndex===this.endIndex-1) {
       console.log(this.endIndex)
     }
-    // check below for difference between options array and optionA-D
-    /*
-    if(quizForm.value.selectedOption[0] === this.quiz[this.currentIndex].options[this.quiz[this.currentIndex].ansIndex]){
-      this.as.createAnswerDetails({
-        "selectedOption": quizForm.value.selectedOption[0],
-        "answerStatus":"Correct",
-        "answerScore":1
-      })
-    }else{
-      this.as.createAnswerDetails({
-        "selectedOption": quizForm.value.selectedOption[0],
-        "answerStatus": "Incorrect",
-        "answerScore": 0
-      })
-    };
-    */
   }
 
   quizObject() {
@@ -95,7 +75,6 @@ export class QuizDisplayComponent implements OnInit {
     this.gradeQuiz(quizForm);
     console.log(this.answers);
     this.us.updateUser(this.quizObject().id, this.quizObject());
-    // this.as.createAnswerDetails(this.answer);
     this.router.navigateByUrl('/result');
   }
 
