@@ -17,7 +17,6 @@
                     </mat-form-field>
 
                     <div>option selected: {{quizForm.value}}</div>
-                    <!-- current: {{currentIndex}} end: {{endIndex}} -->
 
                     <button class='btn btn-primary mx-1' type='submit' [disabled]='quizForm.pristine' (click)="onSubmit(quizForm.value)" *ngIf='currentIndex<endIndex-1'>Submit Answer & Proceed</button>
                     <button class='btn btn-primary mx-1' type='button' (click)='finishQuiz(quizForm.value)' *ngIf='currentIndex===endIndex-1'>Submit Answer & Finish Quiz</button>

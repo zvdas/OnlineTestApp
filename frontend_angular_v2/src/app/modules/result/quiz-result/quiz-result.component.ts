@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Answers } from 'src/app/models/answers';
 import { Quiz } from 'src/app/models/quiz';
 import { QuizService } from 'src/app/services/quiz/quiz.service';
@@ -12,15 +11,15 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 
 export class QuizResultComponent implements OnInit {
-
   quiz: Quiz[] = [];
   answers: Answers[] = [];
   currentIndex: number = 0;
   endIndex: number = this.quiz.length;
 
-  constructor(private qs: QuizService, private us: UserService, private router: Router) { }
+  constructor(private qs: QuizService, private us: UserService) { }
 
   ngOnInit(): void {
+    document.body.style.position='fixed';
     this.getQuestions();
     this.getUserAnswers(JSON.parse(JSON.parse(JSON.stringify(localStorage.getItem('currentUser')))).id);
   }
@@ -52,14 +51,12 @@ export class QuizResultComponent implements OnInit {
 
   testStatus() {
     if(this.answers.reduce((sum,item) => sum + item.answerScore,0) >= (this.answers.length*0.70)){
+      document.body.style.backgroundColor='MediumSeaGreen';
       return "\nYou have passed the Quiz.\nCongratulations!"
     }else{
+      document.body.style.backgroundColor='Tomato';
       return "\nYou have failed the Quiz.\nPlease try again!"
     };
-  }
-
-  retakeQuiz() {
-    this.router.navigate(['/quiz']);
   }
 
 }

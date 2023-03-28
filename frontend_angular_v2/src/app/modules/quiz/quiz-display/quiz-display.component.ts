@@ -17,7 +17,7 @@ export class QuizDisplayComponent implements OnInit {
   quiz: Quiz[] = [];
   currentIndex: number = 0;
   endIndex: number = 0;
-  answer: Answers[] = [];
+  answers: Answers[] = [];
   quizForm = new FormControl('');
 
   constructor(private qs: QuizService, private us:UserService, private router: Router) { }
@@ -43,14 +43,14 @@ export class QuizDisplayComponent implements OnInit {
   gradeQuiz(quizForm: any) {
     if(quizForm[0] === this.quiz[this.currentIndex].answer) {
       // this.as.createAnswerDetails({
-      this.answer.push({
+      this.answers.push({
         selectedOption: quizForm[0],
         answerStatus: 'correct',
         answerScore: 1
       });
     } else {
       // this.as.createAnswerDetails({
-      this.answer.push({
+      this.answers.push({
         selectedOption: quizForm[0],
         answerStatus: 'incorrect',
         answerScore: 0
@@ -63,6 +63,8 @@ export class QuizDisplayComponent implements OnInit {
 
     if(this.currentIndex<this.endIndex-1) {
       this.currentIndex += 1;
+    } else if (this.currentIndex===this.endIndex-1) {
+      console.log(this.endIndex)
     }
     // check below for difference between options array and optionA-D
     /*
@@ -82,11 +84,19 @@ export class QuizDisplayComponent implements OnInit {
     */
   }
 
+  quizObject() {
+    const user = JSON.parse(JSON.parse(JSON.stringify(localStorage.getItem('currentUser'))));
+    user.answers = this.answers;
+    console.log(user);
+    return user;
+  }
+
   finishQuiz(quizForm: any){
     this.gradeQuiz(quizForm);
-    console.log(this.answer);
+    console.log(this.answers);
+    this.us.updateUser(this.quizObject().id, this.quizObject());
     // this.as.createAnswerDetails(this.answer);
-    this.router.navigate(['/result']);
+    this.router.navigateByUrl('/result');
   }
 
 }

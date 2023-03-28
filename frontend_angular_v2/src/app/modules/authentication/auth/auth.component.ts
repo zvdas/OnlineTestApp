@@ -47,6 +47,7 @@ export class AuthComponent {
         .createNewUser(enrollObject)
         .then(res=>{enrollObject.id = res.id})
         .then(()=>localStorage.setItem('currentUser', JSON.stringify(enrollObject)))
+        .then(()=>console.log(localStorage.getItem('currentUser')))
         .finally(()=>this.router.navigateByUrl('/quiz'));
     }
   }
