@@ -11,6 +11,7 @@ import { FormComponent } from '../../layout/form/form.component';
 })
 
 export class UserMasterComponent implements OnInit {
+
   user: User = {} as User;
   userList: User[] = [];
   isLoaded: boolean = false;
@@ -69,4 +70,5 @@ export class UserMasterComponent implements OnInit {
         });
       });
   }
+
 }

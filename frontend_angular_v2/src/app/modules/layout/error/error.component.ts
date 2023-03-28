@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class ErrorComponent implements OnInit {
+
   errorCode: number = 404;
 
   errorTitle: string = 'Page Cannot Be Found';

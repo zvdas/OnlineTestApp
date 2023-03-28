@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class UserEnrollComponent implements OnInit {
+
   slide: string = '';
 
   constructor() { }

@@ -33,7 +33,7 @@ export class FormComponent implements OnInit {
     this.formTitles = this.data.formTitles;
     this.inputFormGroup = this.data.inputFormGroup;
     this.formControlNames = this.data.formControlNames;
-  }  
+  }
 
   patchFormValues() {
     this.inputFormGroup.patchValue(this.data.object);

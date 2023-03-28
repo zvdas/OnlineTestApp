@@ -35,7 +35,6 @@ export class QuizMasterComponent implements OnInit {
   tableData: any = {
     data: this.quizList,
     columns: [
-      // {key: 'index', label: '#'},
       {key: 'question', label: 'Question'},
       {key: 'optionA', label: 'Option A'},
       {key: 'optionB', label: 'Option B'},
@@ -51,7 +50,6 @@ export class QuizMasterComponent implements OnInit {
 
   ngOnInit(): void {
     document.body.style.backgroundColor = 'DarkCyan';
-    // document.body.style.backgroundImage = 'linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%)';
     this.getQuizList();
   }
 
@@ -82,10 +80,6 @@ export class QuizMasterComponent implements OnInit {
           } as Quiz);
           this.isLoaded = true;
         });
-        /*
-        this.quizList = res.map(item=>item.payload.doc.data() as Quiz);
-        this.isLoaded = true;
-        */
       });
   }
 

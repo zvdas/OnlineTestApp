@@ -9,7 +9,9 @@ import { UserService } from 'src/app/services/user/user.service';
   templateUrl: './quiz-review.component.html',
   styleUrls: ['./quiz-review.component.css']
 })
+
 export class QuizReviewComponent implements OnInit {
+
   quiz: Quiz[] = [];
   answers: Answers[] = [];
   currentIndex: number = 0;
@@ -30,7 +32,6 @@ export class QuizReviewComponent implements OnInit {
         this.quiz = response.map(res=>res.payload.doc.data() as Quiz);
         this.endIndex = this.quiz.length;
       },
-      // response => console.log(response),
       error => console.log(error),
       () => console.log("completed")
     )
@@ -38,11 +39,7 @@ export class QuizReviewComponent implements OnInit {
 
   getUserAnswers(id: string) {
     this.us.getUserById(id).subscribe(
-      // response => console.log(response),
-      response => {
-        this.answers = JSON.parse(JSON.stringify(response.payload.data())).answers as Answers[]
-        // console.log(JSON.parse(JSON.stringify(response.payload.data())).answers);
-      },
+      response => {this.answers = JSON.parse(JSON.stringify(response.payload.data())).answers as Answers[]},
       error => console.log(error),
       () => console.log("completed")
     )
