@@ -4,9 +4,9 @@
         <div align='center' class='card col-8 m-5 p-5'>
             <div class='card-body' *ngIf='quiz'>
                 <div class='card-action' *ngFor='let item of quiz.slice(currentIndex,currentIndex+1); let i = index'>
-                    <h4 class='d-flex justify-content-center text-start'>{{ currentIndex+1 }}. {{ item.question }}</h4><br><br>
+                    <h4 class='d-flex justify-content-center text-start'>{{ currentIndex+1 }}. {{ item.question }}</h4>
 
-                    <mat-form-field appearance='outline'>
+                    <mat-form-field class='col-6' appearance='outline'>
                         <mat-label>Select any one option</mat-label>
                         <mat-selection-list [formControl]='quizForm' required [multiple]='false'>
                             <mat-list-option [value]='item.optionA'>{{item.optionA}}</mat-list-option>
