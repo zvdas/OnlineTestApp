@@ -15,7 +15,6 @@ export class NavbarComponent implements OnInit {
   @Input() isLoggedIn!: boolean;
 
   currentUser: Auth | User = {} as Auth | User;
-
   currentDate = new Date();
 
   constructor(private as: AuthService, private router: Router) { }

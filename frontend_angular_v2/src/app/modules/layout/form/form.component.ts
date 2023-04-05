@@ -5,7 +5,13 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
-  styleUrls: ['./form.component.css']
+  styleUrls: ['./form.component.css'],
+  providers: [
+    {
+      provide: MAT_DIALOG_DATA,
+      useValue: {}
+    }
+  ]
 })
 
 export class FormComponent implements OnInit {

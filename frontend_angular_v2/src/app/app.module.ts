@@ -8,7 +8,6 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { environment } from 'src/environments/environment';
 import { AuthenticationModule } from './modules/authentication/authentication.module';
 import { QuizService } from './services/quiz/quiz.service';
 import { UserService } from './services/user/user.service';
@@ -18,7 +17,7 @@ import { ReviewModule } from './modules/review/review.module';
 import { LayoutModule } from './modules/layout/layout.module';
 import { StringToNumberPipe } from './pipes/string-to-number.pipe';
 import { AuthGuard } from './guards/auth/auth.guard';
-import { MatDialogRef } from '@angular/material/dialog';
+import { environment } from 'src/environments/environment.prod';
 
 @NgModule({
   declarations: [AppComponent, StringToNumberPipe],
