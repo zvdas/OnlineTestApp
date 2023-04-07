@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { User } from 'src/app/models/user';
@@ -9,8 +8,8 @@ import { User } from 'src/app/models/user';
 
 export class UserService {
 
-  /* inject HttpClient to make API calls */
-  constructor(private hc: HttpClient, private fs: AngularFirestore) { }
+  /* inject AngularFirestore Client to make API calls */
+  constructor(private fs: AngularFirestore) { }
 
   /* for users - user, quiz review, result */
   createNewUser(user: User) {

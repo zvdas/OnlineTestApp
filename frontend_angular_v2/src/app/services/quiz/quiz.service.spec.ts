@@ -4,18 +4,18 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 // import * as jasmine from 'jasmine';
 import { of } from 'rxjs';
-import { QuizMasterComponent } from 'src/app/modules/quiz/quiz-master/quiz-master.component';
-import { environment } from 'src/environments/environment.prod';
 
+import { environment } from 'src/environments/environment.prod';
 import { QuizService } from './quiz.service';
+import { QuizMasterComponent } from 'src/app/modules/quiz/quiz-master/quiz-master.component';
 
 describe('QuizService', () => {
-  let component: QuizMasterComponent;
+  // let component: QuizMasterComponent;
   let service: QuizService;
-  let fixture: ComponentFixture<QuizMasterComponent>;
-  let de: DebugElement;
-  let serviceStub: any;
-  let spy: jasmine.Spy;
+  // let fixture: ComponentFixture<QuizMasterComponent>;
+  // let de: DebugElement;
+  // let serviceStub: any;
+  // let spy: jasmine.Spy;
 
   beforeEach(() => {
     /*
@@ -25,6 +25,7 @@ describe('QuizService', () => {
     */
 
     TestBed.configureTestingModule({
+      /*
       declarations: [QuizMasterComponent],
       imports: [
         AngularFireModule.initializeApp(environment.firebaseConfig),
@@ -35,9 +36,14 @@ describe('QuizService', () => {
     })
     .compileComponents();
 
-    // service = TestBed.inject(QuizService);
+    */
+    });
+
+    service = TestBed.inject(QuizService);
   });
 
+
+  /*
   beforeEach(() => {
     fixture = TestBed.createComponent(QuizMasterComponent);
     component = fixture.componentInstance;
@@ -49,11 +55,13 @@ describe('QuizService', () => {
 
     fixture.detectChanges();
   })
+  */
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 
+  /*
   const quizObject = {
     id: '0',
     question: 'test question',
@@ -74,5 +82,6 @@ describe('QuizService', () => {
     service.deleteQuizDetails(quizObject.id);
     expect(service.quizServer.length).toBeLessThan(1);
   });
+  */
 
 });

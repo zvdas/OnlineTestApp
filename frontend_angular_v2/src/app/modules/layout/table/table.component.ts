@@ -49,7 +49,7 @@ export class TableComponent implements OnInit, AfterViewInit {
     }
   }
 
-  openAddTableDialog() {
+  openAddDialog() {
     const dialogRef = this.dialog.open(this.formInputData.component, {
       disableClose: true,
       maxWidth: '100vw',
@@ -73,6 +73,7 @@ export class TableComponent implements OnInit, AfterViewInit {
       width: '50%',
       data: {
         object: object,
+        mainTitle: this.formInputData.mainTitle,
         formTitles: this.formInputData.formTitles,
         formControlNames: this.formInputData.formControlNames,
         inputFormGroup: this.formInputData.inputFormGroup

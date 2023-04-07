@@ -1,7 +1,14 @@
 import { HttpClientModule } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { RouterTestingModule } from '@angular/router/testing';
+import { environment } from 'src/environments/environment.prod';
 import { AppComponent } from './app.component';
+import { AuthGuard } from './guards/auth/auth.guard';
+import { QuizService } from './services/quiz/quiz.service';
+import { UserService } from './services/user/user.service';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -9,10 +16,18 @@ describe('AppComponent', () => {
       imports: [
         RouterTestingModule,
         HttpClientModule,
+        AngularFireAuthModule,
+        AngularFireModule.initializeApp(environment.firebaseConfig),
+        AngularFirestoreModule
       ],
       declarations: [
-        AppComponent
+        AppComponent,
       ],
+      providers: [
+        QuizService,
+        UserService,
+        AuthGuard,
+      ]
     }).compileComponents();
   });
 

@@ -3,7 +3,7 @@
         <div align='center' class='card col-8 m-5 p-5'>
             <div class='card-body text-center'>
                 <h1>HTML Quiz</h1>
-                <h2>Are You Ready?</h2>
+                <h2 *ngIf="slide === 'enroll'">Are You Ready?</h2>
                 <h3 *ngIf="slide === 'login'">Login</h3>
                 <h5 *ngIf="slide === 'login'">A default admin account has been created for demonstration purposes with username <b>admin@gmail.com</b> and password <b>admin12345</b></h5>
                 <h3 *ngIf="slide === 'register'">Register</h3>

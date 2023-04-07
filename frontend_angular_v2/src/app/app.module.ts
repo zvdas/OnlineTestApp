@@ -35,7 +35,11 @@ import { environment } from 'src/environments/environment.prod';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
   ],
-  providers: [QuizService, UserService, AuthGuard],
+  providers: [
+    QuizService,
+    UserService,
+    AuthGuard
+  ],
   bootstrap: [AppComponent],
 })
 

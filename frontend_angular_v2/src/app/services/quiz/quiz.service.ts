@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 
@@ -10,11 +9,8 @@ import { Quiz } from 'src/app/models/quiz';
 
 export class QuizService {
 
-  /* declare fake API server url to variables to be called below */
-  quizServer = 'http://localhost:3000/quiz';
-
-  /* inject HttpClient to make API calls */
-  constructor(private hc: HttpClient, private fs: AngularFirestore) { }
+  /* inject Angular Firestore Client to make API calls */
+  constructor(private fs: AngularFirestore) { }
 
   /* for quiz - quiz, review, result & admin */
   addQuizDetails(quiz: Quiz){

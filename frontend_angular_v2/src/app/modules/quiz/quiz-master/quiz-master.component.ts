@@ -19,8 +19,8 @@ export class QuizMasterComponent implements OnInit {
 
   formInputData: any = {
     mainTitle: 'Quiz',
-    formTitles: ['ID', 'Question', 'Option A', 'Option B', 'Option C', 'Option D', 'Answer', 'Action'],
-    formControlNames: ['id', 'question', 'optionA', 'optionB', 'optionC', 'optionD', 'answer', 'action'],
+    formTitles: ['ID', 'Question', 'Option A', 'Option B', 'Option C', 'Option D', 'Answer'],
+    formControlNames: ['id', 'question', 'optionA', 'optionB', 'optionC', 'optionD', 'answer'],
     inputFormGroup: new FormGroup({
       id: new FormControl(''),
       question: new FormControl(''),

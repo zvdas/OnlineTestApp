@@ -1,29 +1,20 @@
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
-  styleUrls: ['./form.component.css'],
-  providers: [
-    {
-      provide: MAT_DIALOG_DATA,
-      useValue: {}
-    }
-  ]
+  styleUrls: ['./form.component.css']
 })
 
 export class FormComponent implements OnInit {
-
-  @Input() formInputData: any;
-
   mainTitle: string = '';
   formTitles: string[] = [];
   formControlNames: string[] = [];
   inputFormGroup!: FormGroup;
 
-  constructor(@Inject(MAT_DIALOG_DATA) private data: {object: any, mainTitle: string, formTitles: string[], formControlNames: string[], inputFormGroup: FormGroup}) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: {object: any, mainTitle: string, formTitles: string[], formControlNames: string[], inputFormGroup: FormGroup}) { }
 
   ngOnInit(): void {
     this.getForm();
