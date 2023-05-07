@@ -1,8 +1,4 @@
-# frontend_angular_v1/src/environments/environment.prod.ts
-# frontend_angular_v1/src/environments/environment.prod.ts
-# frontend_angular_v1/src/environments/environment.prod.ts
-
+# environment variables
 **/node_modules
-**/environment.prod.ts
-**/environment.ts
+**/environments
 **/config.env
