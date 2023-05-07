@@ -10,12 +10,12 @@ dotenv.config({ path: './config/config.env' });
 const app = express();
 
 // define port
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 4500;
 
 // start express server
-const server = app.listen(PORT, () => console.log(`Server running on port ${PORT}`.green.bold.underline));
+const server = app.listen(PORT, () => console.log(`Express running on ${process.env.NODE_ENV} server running on port ${PORT}`.blue.bold.underline));
 
-// handle undhandled promise rejections
+// handle unhandled promise rejections
 process.on('unhandledRejection', (err, promise) => {
     console.log(`Error: ${err.message}`.red.underline);
     // close server and exit process
