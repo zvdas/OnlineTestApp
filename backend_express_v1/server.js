@@ -2,16 +2,29 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const colors = require('colors');
-const connectDB = require('./config/mongodb.config');
+const bodyParser = require('body-parser');
 
 // load environment variables
 dotenv.config({ path: './config/config.env' });
 
+// database config files`
+const connectDB = require('./config/mongodb.config');
+
+// route files
+const quiz = require('./routes/quiz.route');
+
 // define express app
 const app = express();
 
+// use body parser
+app.use(express.json());
+app.use(bodyParser.urlencoded({extended: false}));
+
 // connect to mongodb
 connectDB();
+
+// mount routers
+app.use('/api/v1/quiz', quiz);
 
 // define port
 const PORT = process.env.PORT || 4500;
