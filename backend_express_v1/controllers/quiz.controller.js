@@ -1,6 +1,10 @@
+const asyncHandler = require('../middleware/async');
 const QuizModel = require('../models/quiz.model');
 
-exports.getQuizList = async (req, res, next) => {
+// @desc        Get all quiz questions
+// @route       GET /api/v1/quiz
+// @access      Public
+exports.getQuizList = asyncHandler(async (req, res, next) => {
     const quiz = await QuizModel.find();
 
     res
@@ -9,9 +13,12 @@ exports.getQuizList = async (req, res, next) => {
             success: true,
             data: quiz
         });
-};
+});
 
-exports.getQuizById = async (req, res, next) => {
+// @desc        Get quiz questions by ID
+// @route       GET /api/v1/quiz/:id
+// @access      Public
+exports.getQuizById = asyncHandler(async (req, res, next) => {
     const quiz = await QuizModel.findById(req.params.id);
 
     res
@@ -20,9 +27,12 @@ exports.getQuizById = async (req, res, next) => {
             success: true,
             data: quiz
         });
-};
+});
 
-exports.createQuiz = async (req, res, next) => {
+// @desc        Create new quiz question
+// @route       POST /api/v1/quiz
+// @access      Public
+exports.createQuiz = asyncHandler(async (req, res, next) => {
     await QuizModel.create(req.body);
 
     res
@@ -31,10 +41,13 @@ exports.createQuiz = async (req, res, next) => {
             success: true,
             msg: `Quiz question created successfully`
         });
-};
+});
 
-exports.updateQuizById = async (req, res, next) => {
-    const quiz = QuizModel.findByIdAndUpdate(req.params.id, req.body, {runValidators: true});
+// @desc        Update quiz question by ID
+// @route       PUT /api/v1/quiz/:id
+// @access      Public
+exports.updateQuizById = asyncHandler(async (req, res, next) => {
+    await QuizModel.findByIdAndUpdate(req.params.id, req.body, {runValidators: true});
 
     res
         .status(200)
@@ -42,10 +55,13 @@ exports.updateQuizById = async (req, res, next) => {
             success: true,
             msg: `Quiz questions for id ${req.params.id} updated successfully`
         });
-};
+});
 
-exports.deleteQuizById = async (req, res, next) => {
-    const quiz = QuizModel.findByIdAndDelete(req.params.id);
+// @desc        Delete quiz question by ID
+// @route       DELETE /api/v1/quiz/:id
+// @access      Public
+exports.deleteQuizById = asyncHandler(async (req, res, next) => {
+    await QuizModel.findByIdAndDelete(req.params.id);
 
     res
         .status(200)
@@ -53,4 +69,4 @@ exports.deleteQuizById = async (req, res, next) => {
             success: true,
             msg: `Quiz questions for id ${req.params.id} deleted successfully`
         });
-};
+});
