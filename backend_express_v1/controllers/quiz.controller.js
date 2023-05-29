@@ -34,7 +34,7 @@ exports.createQuiz = async (req, res, next) => {
 };
 
 exports.updateQuizById = async (req, res, next) => {
-    const quiz = QuizModel.updateOne(req.params.id, req.body, { });
+    const quiz = QuizModel.findByIdAndUpdate(req.params.id, req.body, {runValidators: true});
 
     res
         .status(200)
@@ -45,6 +45,8 @@ exports.updateQuizById = async (req, res, next) => {
 };
 
 exports.deleteQuizById = async (req, res, next) => {
+    const quiz = QuizModel.findByIdAndDelete(req.params.id);
+
     res
         .status(200)
         .json({
