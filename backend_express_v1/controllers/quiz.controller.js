@@ -1,5 +1,6 @@
 const asyncHandler = require('../middleware/async');
 const QuizModel = require('../models/quiz.model');
+const ErrorResponse = require('../utils/errorResponse');
 
 // @desc        Get all quiz questions
 // @route       GET /api/v1/quiz
@@ -20,6 +21,10 @@ exports.getQuizList = asyncHandler(async (req, res, next) => {
 // @access      Public
 exports.getQuizById = asyncHandler(async (req, res, next) => {
     const quiz = await QuizModel.findById(req.params.id);
+
+    if(!quiz) {
+        return(next(new ErrorResponse(`Quiz with ID ${req.params.id} not found`, 404)));
+    }
 
     res
         .status(200)
@@ -47,7 +52,11 @@ exports.createQuiz = asyncHandler(async (req, res, next) => {
 // @route       PUT /api/v1/quiz/:id
 // @access      Public
 exports.updateQuizById = asyncHandler(async (req, res, next) => {
-    await QuizModel.findByIdAndUpdate(req.params.id, req.body, {runValidators: true});
+    const quiz = await QuizModel.findByIdAndUpdate(req.params.id, req.body, {runValidators: true});
+
+    if(!quiz) {
+        return(next(new ErrorResponse(`Quiz with ID ${req.params.id} not found`, 404)));
+    }
 
     res
         .status(200)
@@ -61,7 +70,11 @@ exports.updateQuizById = asyncHandler(async (req, res, next) => {
 // @route       DELETE /api/v1/quiz/:id
 // @access      Public
 exports.deleteQuizById = asyncHandler(async (req, res, next) => {
-    await QuizModel.findByIdAndDelete(req.params.id);
+    const quiz = await QuizModel.findByIdAndDelete(req.params.id);
+
+    if(!quiz) {
+        return(next(new ErrorResponse(`Quiz with ID ${req.params.id} not found`, 404)));
+    }
 
     res
         .status(200)
