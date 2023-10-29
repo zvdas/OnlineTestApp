@@ -9,6 +9,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [],
@@ -18,6 +20,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
   exports: [
     FormsModule,
     ReactiveFormsModule,
+    MatButtonModule,
     MatDialogModule,
     MatFormFieldModule,
     MatIconModule,
@@ -26,6 +29,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatPaginatorModule,
     MatSortModule,
     MatTableModule,
+    MatTooltipModule,
   ]
 })
 
