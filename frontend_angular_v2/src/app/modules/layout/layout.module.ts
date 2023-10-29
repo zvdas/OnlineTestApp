@@ -9,6 +9,7 @@ import { TableComponent } from './table/table.component';
 import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SharedModule } from '../shared/shared.module';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { SharedModule } from '../shared/shared.module';
     NavbarComponent,
     TableComponent,
     DashboardComponent,
+    FooterComponent,
   ],
   imports: [
     CommonModule,
@@ -28,6 +30,7 @@ import { SharedModule } from '../shared/shared.module';
     NavbarComponent,
     FormComponent,
     TableComponent,
+    FooterComponent
   ]
 })
 
