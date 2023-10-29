@@ -1,20 +1,20 @@
-<nav class="navbar navbar-expand-lg bg-dark">
+<nav class="navbar navbar-expand-lg bg-dark sticky-top">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">OTA</a>
+    <a class="navbar-brand text-primary" href="#">OTA</a>
 
     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
       <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="#">Home</a>
+        <a class="nav-link active text-primary" aria-current="page" href="#">Home</a>
       </li>
 
       <li *ngIf="isLoggedIn" class="nav-item">
-        <a class="nav-link active" aria-current="page" href="/quiz/master">
+        <a class="nav-link active text-primary" aria-current="page" href="/quiz/master">
           Quiz Master
         </a>
       </li>
 
       <li *ngIf="isLoggedIn" class="nav-item">
-        <a class="nav-link active" aria-current="page" href="/user">
+        <a class="nav-link active text-primary" aria-current="page" href="/user">
           User Master
         </a>
       </li>
@@ -22,19 +22,19 @@
 
     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
       <li class="nav-item">
-        <span class="nav-link">{{ currentUser.email }}</span>
+        <span class="nav-link text-primary">{{ currentUser.email }}</span>
       </li>
 
       <li class="nav-item">
-        <span class="nav-link">{{ currentDate | date : "longDate" }}</span>
+        <span class="nav-link text-primary">{{ currentDate | date : "longDate" }}</span>
       </li>
 
       <li class="nav-item">
-        <span class="nav-link">{{ currentDate | date : "mediumTime" }}</span>
+        <span class="nav-link text-primary">{{ currentDate | date : "mediumTime" }}</span>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" (click)="Logout()">Logout</a>
+        <a class="nav-link text-primary" (click)="Logout()">Logout</a>
       </li>
     </ul>
   </div>
