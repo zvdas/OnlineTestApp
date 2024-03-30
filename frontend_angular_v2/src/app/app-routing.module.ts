@@ -16,28 +16,32 @@ const routes: Routes = [
     loadChildren: () =>
       import('./modules/authentication/authentication.module').then(
         (m) => m.AuthenticationModule
-      ),
-    canActivate: [AuthGuard],
+      )
   },
+  /* Authorized Routes */
   {
     path: 'quiz',
     loadChildren: () =>
       import('./modules/quiz/quiz.module').then((m) => m.QuizModule),
+    canActivate: [AuthGuard],
   },
   {
     path: 'result',
     loadChildren: () =>
       import('./modules/result/result.module').then((m) => m.ResultModule),
+    canActivate: [AuthGuard],
   },
   {
     path: 'review',
     loadChildren: () =>
       import('./modules/review/review.module').then((m) => m.ReviewModule),
+    canActivate: [AuthGuard],
   },
   {
     path: 'user',
     loadChildren: () =>
       import('./modules/user/user.module').then((m) => m.UserModule),
+    canActivate: [AuthGuard],
   },
   {
     path: '',
@@ -55,4 +59,4 @@ const routes: Routes = [
   exports: [RouterModule],
 })
 
-export class AppRoutingModule {}
+export class AppRoutingModule { }
