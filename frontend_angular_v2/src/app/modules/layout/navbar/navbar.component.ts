@@ -12,28 +12,19 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 
 export class NavbarComponent implements OnInit {
 
-  @Input() isLoggedIn!: boolean;
+  @Input() isLoggedIn: boolean = false;
 
-  currentUser: Auth | User = {} as Auth | User;
+  currentUser: any;
   currentDate = new Date();
 
-  constructor(private as: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
-    if(!this.isLoggedIn) {
-      this.currentUser = JSON.parse(localStorage.getItem('currentUser')!);
-    } else {
-      this.currentUser = JSON.parse(localStorage.getItem('user')!)['providerData'][0];
-    };
+    this.currentUser = this.authService.getLoggedInUser();
   }
 
   Logout() {
-    if(!this.isLoggedIn) {
-      localStorage.removeItem('currentUser');
-      this.router.navigateByUrl('/home');
-    } else {
-      this.as.logOutUser();
-    }
+    this.authService.logOutUser();
   }
 
 }
