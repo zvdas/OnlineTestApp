@@ -3,26 +3,22 @@
 
   <mat-dialog-content class="mat-typography">
     <ng-container *ngFor="let title of formTitles; index as i">
-      <ng-container *ngFor="let name of formControlNames; index as j">
-        <ng-container *ngIf="i === j">
-          <div class="row mb-3 align-items-center justify-content-center">
-            <ng-container *ngIf="title === 'ID'; else notId"></ng-container>
-            <ng-template #notId>
-              <div class="col-3">
-                <label class="form-label">{{ title }}</label>
-              </div>
-            </ng-template>
-            <div *ngIf="name === 'id'; else others">
-              <input class="form-control" hidden readonly formControlName="{{ name }}" />
-            </div>
-            <ng-template #others>
-              <div class="col-8">
-                <input class="form-control" formControlName="{{ name }}" />
-              </div>
-            </ng-template>
+      <div class="row mb-3 align-items-center justify-content-center">
+        <ng-container *ngIf="title === 'ID'; else notId"></ng-container>
+        <ng-template #notId>
+          <div class="col-3">
+            <label class="form-label">{{ title }}</label>
           </div>
-        </ng-container>
-      </ng-container>
+        </ng-template>
+        <div *ngIf="formControlNames[i] === 'id'; else others">
+          <input class="form-control" hidden readonly [formControlName]="formControlNames[i]"  [placeholder]="formPlaceholders[i]"/>
+        </div>
+        <ng-template #others>
+          <div class="col-8">
+            <input class="form-control" [formControlName]="formControlNames[i]"  [placeholder]="formPlaceholders[i]"/>
+          </div>
+        </ng-template>
+      </div>
     </ng-container>
   </mat-dialog-content>
 
