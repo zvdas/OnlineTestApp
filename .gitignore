@@ -2,3 +2,5 @@
 **/node_modules
 **/environments
 **/config.env
+**/.firebase
+**/.angular
