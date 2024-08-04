@@ -49,6 +49,7 @@ export class TableComponent implements OnInit, AfterViewInit {
     }
   }
 
+  /*
   openAddDialog() {
     const dialogRef = this.dialog.open(this.formInputData.component, {
       disableClose: true,
@@ -65,17 +66,20 @@ export class TableComponent implements OnInit, AfterViewInit {
 
     dialogRef.afterClosed().subscribe(res=>this.formDataEvent.emit(res));
   }
+  */
 
-  openEditDialog(object: any) {
+  openEditDialog(type: 'add' | 'edit', object?: any) {
     const dialogRef = this.dialog.open(this.formInputData.component, {
       disableClose: true,
       maxWidth: '100vw',
       width: '50%',
       data: {
-        object: object,
+        type: type,
+        object: type === 'edit' ? object : {},
         mainTitle: this.formInputData.mainTitle,
         formTitles: this.formInputData.formTitles,
         formControlNames: this.formInputData.formControlNames,
+        formPlaceholders: this.formInputData.formPlaceholders,
         inputFormGroup: this.formInputData.inputFormGroup
       }
     })

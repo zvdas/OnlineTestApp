@@ -2,24 +2,9 @@
   <div class='card'>
     <h1 class='card-title text-center'>List of {{tableData.title}}</h1>
 
-    <div class='d-flex justify-content-center'>
-      <button
-        type='button'
-        class='btn btn-primary col-8'
-        (click)='openAddDialog()'
-      >
-        Add
-      </button>
-    </div>
-
     <mat-form-field class='m-2'>
       <mat-label>Filter</mat-label>
-      <input
-        matInput
-        (keyup)='applyFilter($event)'
-        placeholder='Enter search term'
-        #input
-      />
+      <input matInput (keyup)='applyFilter($event)' placeholder='Enter search term' #input />
     </mat-form-field>
 
     <table mat-table [dataSource]='dataSource' class='m-2 p-2 mat-elevation-z8'>
@@ -30,21 +15,20 @@
         <td class='px-2' mat-cell *matCellDef='let row; let i = index'>
           <ng-container [ngSwitch]='column.key'>
             <ng-container *ngSwitchCase="'index'">
-              {{ i + 1 }}
+              {{(paginator?.pageIndex ?? 0) * (paginator?.pageSize ?? 5) + i + 1}}
+              <!-- {{ i + 1 }} -->
             </ng-container>
 
             <ng-container *ngSwitchCase="'action'">
-              <button
-                class='btn btn-primary m-1'
-                (click)='openEditDialog(row)'
-              >
-                Edit
+              <button matTooltip="Edit this quiz entry" mat-icon-button class='btn btn-primary m-1'
+                (click)='openEditDialog("edit", row)'>
+                <!-- Edit -->
+                <mat-icon>edit</mat-icon>
               </button>
-              <button
-                class='btn btn-primary m-1'
-                (click)='deleteSelected(row.id)'
-              >
-                Delete
+              <button matTooltip="Delete this quiz entry" mat-icon-button class='btn btn-danger m-1'
+                (click)='deleteSelected(row.id)'>
+                <!-- Delete -->
+                <mat-icon>delete</mat-icon>
               </button>
             </ng-container>
 
@@ -58,5 +42,16 @@
       <tr mat-header-row *matHeaderRowDef='displayedColumns'></tr>
       <tr mat-row *matRowDef='let row; columns: displayedColumns'></tr>
     </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
+    </mat-paginator>
+
+    <div class='d-flex justify-content-center'>
+      <button mat-icon-button matTooltip="Add a new quiz entry" type='button' class='btn btn-primary col-8'
+        (click)='openEditDialog("add")'>
+        <!-- Add -->
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
   </div>
 </div>
