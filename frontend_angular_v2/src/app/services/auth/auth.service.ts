@@ -29,6 +29,10 @@ export class AuthService {
     return this.afAuth.currentUser;
   }
 
+  getLoginState() {
+    return this.afAuth.authState;
+  }
+
   forgotPassword(resetEmail: string) {
     this.afAuth
       .sendPasswordResetEmail(resetEmail);
