@@ -4,6 +4,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Quiz } from 'src/app/models/quiz';
 import { QuizService } from 'src/app/services/quiz/quiz.service';
 import { FormComponent } from '../../layout/form/form.component';
+import { FormInputData } from 'src/app/models/form-input-data';
+import { QuizTable } from 'src/app/models/quiz-table';
 
 @Component({
   selector: 'app-quiz-master',
@@ -17,10 +19,11 @@ export class QuizMasterComponent implements OnInit {
   quizList: Quiz[] = [];
   isLoaded: boolean = false;
 
-  formInputData: any = {
+  formInputData: FormInputData = {
     mainTitle: 'Quiz',
     formTitles: ['ID', 'Question', 'Option A', 'Option B', 'Option C', 'Option D', 'Answer'],
     formControlNames: ['id', 'question', 'optionA', 'optionB', 'optionC', 'optionD', 'answer'],
+    formPlaceholders: ['Enter a question ID', 'Enter a question', 'Enter option A', 'Enter option B', 'Enter option C', 'Enter option D', 'Enter Answer'],
     inputFormGroup: new FormGroup({
       id: new FormControl(''),
       question: new FormControl(''),
@@ -33,7 +36,7 @@ export class QuizMasterComponent implements OnInit {
     component: FormComponent
   };
 
-  tableData: any = {
+  tableData: QuizTable = {
     title: 'Quiz Questions',
     data: this.quizList,
     columns: [
