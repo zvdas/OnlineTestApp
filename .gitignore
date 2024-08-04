@@ -3,4 +3,6 @@
 **/environments
 **/config.env
 **/.firebase
+**/.firebase/**
 **/.angular
+**/.vscode
