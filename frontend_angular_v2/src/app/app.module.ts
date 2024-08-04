@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
@@ -18,6 +18,7 @@ import { LayoutModule } from './modules/layout/layout.module';
 import { StringToNumberPipe } from './pipes/string-to-number.pipe';
 import { AuthGuard } from './guards/auth/auth.guard';
 import { environment } from 'src/environments/environment.prod';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [AppComponent, StringToNumberPipe],
@@ -38,9 +39,10 @@ import { environment } from 'src/environments/environment.prod';
   providers: [
     QuizService,
     UserService,
-    AuthGuard
+    AuthGuard,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })
 
-export class AppModule {}
+export class AppModule { }
